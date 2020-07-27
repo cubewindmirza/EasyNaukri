@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".profile_details"
+    android:background="@drawable/completeprofileback">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/profile_details"
+        android:layout_gravity="center"
+        android:layout_marginBottom="13dp"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_marginBottom="13dp"
+         android:layout_marginEnd="10dp"
+        >
+
+      <EditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:drawableStart="@drawable/user"
+          android:drawablePadding="5dp"
+          android:paddingRight="10dp"
+          android:hint="Enter FullName"
+          android:background="@drawable/loginback"
+          android:id="@+id/profile_fullname"
+          android:layout_margin="8dp"
+          android:maxHeight="200dp" />
+     </LinearLayout>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_marginBottom="13dp"
+           android:layout_marginEnd="10dp"
+           >
+           <EditText
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:drawableStart="@drawable/user"
+               android:drawablePadding="5dp"
+               android:paddingRight="10dp"
+               android:hint="Enter FatherName"
+               android:layout_margin="8dp"
+               android:background="@drawable/loginback"
+               android:id="@+id/profile_fathername"
+               android:maxHeight="200dp" />
+       </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="13dp"
+            android:layout_marginEnd="10dp"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/user"
+                android:drawablePadding="5dp"
+                android:paddingRight="10dp"
+                android:layout_margin="8dp"
+                android:hint="Enter MotherName"
+                android:background="@drawable/loginback"
+                android:id="@+id/profile_mothername"
+                android:maxHeight="200dp" />
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="13dp"
+                android:layout_marginEnd="10dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/dob"
+                    android:drawablePadding="5dp"
+                    android:paddingRight="10dp"
+                    android:layout_margin="8dp"
+                    android:hint="Enter Dateofbirth"
+                    android:background="@drawable/loginback"
+                    android:id="@+id/profile_dob"
+                    android:maxHeight="200dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="13dp"
+                android:layout_marginEnd="10dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/address"
+                    android:drawablePadding="5dp"
+                    android:paddingRight="10dp"
+                    android:layout_margin="8dp"
+                    android:hint="Enter Address"
+                    android:background="@drawable/loginback"
+                    android:id="@+id/profile_address"
+                    android:maxHeight="200dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="State"
+                        android:background="@drawable/loginback"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
+                        android:id="@+id/profile_state"
+                        />
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="City"
+                        android:gravity="center"
+                        android:background="@drawable/loginback"
+                        android:layout_margin="8dp"
+                        android:id="@+id/profile_city"
+                        />
+
+                </LinearLayout>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="PinCode"
+                    android:inputType="number"
+                    android:background="@drawable/loginback"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:id="@+id/profile_pincode"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="13dp"
+                android:layout_marginEnd="10dp"
+                >
+
+                <RadioGroup
+                    android:id="@+id/profile_gender"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    >
+                    <RadioButton
+                        android:id="@+id/profile_male"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:checked="true"
+                        android:layout_weight="1"
+                        android:textSize="14dp"
+                        android:text="Male"
+                        />
+                    <RadioButton
+                        android:id="@+id/profile_female"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:checked="false"
+                        android:layout_weight="1"
+                        android:textSize="14dp"
+                        android:text="Female"
+                        />
+                </RadioGroup>
+            </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:id="@+id/profile_update"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "940674283246",
+    "firebase_url": "https://animation-be3c8.firebaseio.com",
+    "project_id": "animation-be3c8",
+    "storage_bucket": "animation-be3c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940674283246:android:1ebe0bb8cc9d68864725ff",
+        "android_client_info": {
+          "package_name": "com.example.easynaukri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940674283246-8m54ttods62cghnk3i1q2d8mihmvgk63.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.easynaukri",
+            "certificate_hash": "abf4f1ad5c7091b7efd99a36c2936d55212a6520"
+          }
+        },
+        {
+          "client_id": "940674283246-825amp7qrubb37ql6umgi55j2e1h0vdk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaCBR2n3a_NKXVogqf4tXyb710hXM-bKw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "940674283246-825amp7qrubb37ql6umgi55j2e1h0vdk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
