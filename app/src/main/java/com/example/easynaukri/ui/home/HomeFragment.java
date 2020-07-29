@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -89,6 +90,8 @@ public class HomeFragment extends Fragment {
         linearLayout2=view.findViewById(R.id.linearlayout2);
         linearLayout3=view.findViewById(R.id.linearlayout3);
         linearLayout4=view.findViewById(R.id.linearlayout4);
+        AppCompatActivity activity= (AppCompatActivity) getActivity();
+        activity.getSupportActionBar().setTitle("Home");
           checkThemeColor();
          // checkprofilephoto();
           checkuserandemailnumber();

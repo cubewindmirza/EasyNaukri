@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -52,6 +53,8 @@ public class ToolsFragment extends Fragment {
         toolsViewModel =
                 ViewModelProviders.of(this).get(ToolsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_privacy, container, false);
+        AppCompatActivity activity= (AppCompatActivity) getActivity();
+        activity.getSupportActionBar().setTitle("Resume");
          pdfView=root.findViewById(R.id.pdf_view);
          btnpdf=root.findViewById(R.id.viewresume);
          btnpdf.setOnClickListener(new View.OnClickListener() {

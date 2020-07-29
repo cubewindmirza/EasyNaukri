@@ -30,6 +30,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -69,12 +70,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class logged_in_page extends AppCompatActivity {
+public class logged_in_page extends AppCompatActivity   {
     database_helper db = new database_helper(this);
     int permissioncode = 100;
     int imagepickcode = 200;
@@ -116,6 +120,7 @@ public class logged_in_page extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
+        fab.hide();
         connection=new InternetConnection();
         internetdialog=new ProgressDialog(this);
         internetdialog.setTitle("Internet Issue");
@@ -155,19 +160,28 @@ public class logged_in_page extends AppCompatActivity {
         headerview = navigationView.getHeaderView(0);
         headertv = headerview.findViewById(R.id.user_email);
         headertv.setText(foundname);
+        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawer,toolbar,R.string.open_drawer,R.string.close_drawer);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+
         // sharedPreferences=getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         // headertv.setText(sharedPreferences.getString("image","NOT FOUND"));
         circleImageView = headerview.findViewById(R.id.Header_Imageview);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
+
+       mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
                 R.id.nav_tools,  R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+       // NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
         checkThemeColor();
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,7 +226,7 @@ public class logged_in_page extends AppCompatActivity {
 
                     }
                     case R.id.nav_slideshow: {
-                        payUsingUpi();
+                       // payUsingUpi();
                         break;
                     }
                     case R.id.nav_tools: {
@@ -274,6 +288,7 @@ public class logged_in_page extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GOOGLE_PAY_REQUEST_CODE) {
             if ((RESULT_OK == resultCode) || (resultCode == GOOGLE_PAY_REQUEST_CODE)) {
                 if (data != null) {
@@ -308,8 +323,7 @@ public class logged_in_page extends AppCompatActivity {
             uploadresume(data.getData());
         } else if (resultCode == RESULT_OK && requestCode == 1) {
             Toast.makeText(this, "Image picked successfully code 1", Toast.LENGTH_LONG).show();
-        }
-        else if (resultCode == RESULT_OK && requestCode == 2 && data != null) {
+        } else if (resultCode == RESULT_OK && requestCode == 2 && data != null) {
             try {
                 /*assert data != null;
                 String Url=data.getData().toString();
@@ -401,7 +415,7 @@ public class logged_in_page extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-          getMenuInflater().inflate(R.menu.theme_rate, menu);
+           getMenuInflater().inflate(R.menu.theme_rate, menu);
         return true;
     }
 
@@ -564,46 +578,47 @@ public class logged_in_page extends AppCompatActivity {
         if (color.equals("Red")) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.action_bar);
-            setSupportActionBar(toolbar);
             headerview.setBackgroundResource(R.drawable.red_gradient_theme);
             color_theme.setColor("red");
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+            NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         } else if (color.equals("Blue")) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.gradient_actionbar);
-            setSupportActionBar(toolbar);
+            //setSupportActionBar(toolbar);
             headerview.setBackgroundResource(R.drawable.gradient_navheader);
             color_theme.setColor("blue");
         } else if (color.equals("Green")) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.green_gradient_themea);
-            setSupportActionBar(toolbar);
+           // setSupportActionBar(toolbar);
             headerview.setBackgroundResource(R.drawable.green_gradient_themen);
             color_theme.setColor("green");
         } else if (color.equals("Orange")) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.orange_gradient_themea);
-            setSupportActionBar(toolbar);
+           // setSupportActionBar(toolbar);
             headerview.setBackgroundResource(R.drawable.orange_gradient_themen);
             color_theme.setColor("orange");
         }
         else if (color.equals("Yellow")) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.yellow_gradient_themea);
-            setSupportActionBar(toolbar);
+            //setSupportActionBar(toolbar);
             headerview.setBackgroundResource(R.drawable.yellow_gradient_themen);
             color_theme.setColor("yellow");
         }
         else if (color.equals("Dark")) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.dark_gradient_themea);
-            setSupportActionBar(toolbar);
+            //setSupportActionBar(toolbar);
             headerview.setBackgroundResource(R.drawable.dark_gradient_themen);
             color_theme.setColor("dark");
         }
         else if (color.equals("Brown")) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.brown_gradient_themea);
-            setSupportActionBar(toolbar);
+           // setSupportActionBar(toolbar);
             headerview.setBackgroundResource(R.drawable.brown_gradient_themen);
             color_theme.setColor("brown");
         }
@@ -621,50 +636,54 @@ public class logged_in_page extends AppCompatActivity {
         if (color.equals(blue)) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.gradient_actionbar);
-            setSupportActionBar(toolbar);
+           // setSupportActionBar(toolbar);
+
             headerview.setBackgroundResource(R.drawable.gradient_navheader);
         } else if (color.equals(red)) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.action_bar);
-            setSupportActionBar(toolbar);
+           // setSupportActionBar(toolbar);
             headerview.setBackgroundResource(R.drawable.red_gradient_theme);
             //color_theme.setColor("red");
         }
         else if (color.equals(green)) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.green_gradient_themea);
-            setSupportActionBar(toolbar);
+            //setSupportActionBar(toolbar);
             headerview.setBackgroundResource(R.drawable.green_gradient_themen);
             //color_theme.setColor("green");
         }
         else if (color.equals(orange)) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.orange_gradient_themea);
-            setSupportActionBar(toolbar);
+            //setSupportActionBar(toolbar);
             headerview.setBackgroundResource(R.drawable.orange_gradient_themen);
             //.setColor("orange");
         }
         else if (color.equals(yellow)) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.yellow_gradient_themea);
-            setSupportActionBar(toolbar);
+            //setSupportActionBar(toolbar);
             headerview.setBackgroundResource(R.drawable.yellow_gradient_themen);
             //.setColor("orange");
         }
         else if (color.equals(dark)) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.dark_gradient_themea);
-            setSupportActionBar(toolbar);
+            //setSupportActionBar(toolbar);
             headerview.setBackgroundResource(R.drawable.dark_gradient_themen);
         }
         else if (color.equals(brown)) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundResource(R.drawable.brown_gradient_themea);
-            setSupportActionBar(toolbar);
+            //setSupportActionBar(toolbar);
             headerview.setBackgroundResource(R.drawable.brown_gradient_themen);
         }
     }
     public void payUsingUpi(){
+        Calendar c = Calendar.getInstance();
+       // SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+       transid=c.getTime().toString();
         Uri uri =
                 new Uri.Builder()
                         .scheme("upi")
@@ -680,7 +699,7 @@ public class logged_in_page extends AppCompatActivity {
                         .build();
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(uri);
-        intent.setPackage(GOOGLE_PAY_PACKAGE_NAME);
+        //intent.setPackage(GOOGLE_PAY_PACKAGE_NAME);
         Intent upiPayIntent = new Intent(Intent.ACTION_VIEW);
         upiPayIntent.setData(uri);
 
@@ -728,8 +747,14 @@ public class logged_in_page extends AppCompatActivity {
                 String useruid = firebaseUser.getUid();
                 DatabaseReference myRef = database.getReference().child(useruid).child("PaymentDetails");
                 HashMap<String,Object> result=new HashMap<String,Object>();
-                String payment="true";
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                String strDate = sdf.format(c.getTime());
+                String payment="Done";
+                String Date=strDate;
                 result.put("Payment",payment);
+                result.put("Date",strDate);
+                result.put("TransactionId",transid);
                 myRef.updateChildren(result);
                 Toast.makeText(logged_in_page.this, "Transaction successful.", Toast.LENGTH_SHORT).show();
                // Log.e("UPI", "payment successfull: "+approvalRefNo);
@@ -741,14 +766,37 @@ public class logged_in_page extends AppCompatActivity {
                 String useruid = firebaseUser.getUid();
                 DatabaseReference myRef = database.getReference().child(useruid).child("PaymentDetails");
                 HashMap<String,Object> result=new HashMap<String,Object>();
-                String payment="false";
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                String strDate = sdf.format(c.getTime());
+                String payment="Not Done";
+                String cancel="Canceled by user";
                 result.put("Payment",payment);
+                result.put("Cancel",cancel);
+                result.put("Date",strDate);
+                result.put("TransactionId",transid);
                 myRef.updateChildren(result);
                 Toast.makeText(logged_in_page.this, "Payment cancelled by user.", Toast.LENGTH_SHORT).show();
                // Log.e("UPI", "Cancelled by user: "+approvalRefNo);
 
             }
             else {
+                firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                String useruid = firebaseUser.getUid();
+                DatabaseReference myRef = database.getReference().child(useruid).child("PaymentDetails");
+                HashMap<String,Object> result=new HashMap<String,Object>();
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                String strDate = sdf.format(c.getTime());
+                String payment="Not Done";
+                String cancel="Some error while transation";
+                result.put("Payment",payment);
+                result.put("Cancel",cancel);
+                result.put("Date",strDate);
+                result.put("TransactionId",transid);
+                myRef.updateChildren(result);
                 Toast.makeText(logged_in_page.this, "Transaction failed.Please try again", Toast.LENGTH_SHORT).show();
                // Log.e("UPI", "failed payment: "+approvalRefNo);
 
@@ -759,5 +807,7 @@ public class logged_in_page extends AppCompatActivity {
             Toast.makeText(logged_in_page.this, "Internet connection is not available. Please check and try again", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
 }

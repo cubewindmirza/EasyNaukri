@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -142,6 +143,8 @@ public class GalleryFragment extends Fragment {
         linearLayout=view.findViewById(R.id.complete_profile_theme);
         sp=getActivity().getSharedPreferences(PREF_KEY,Context.MODE_PRIVATE);
         color_theme=new color_management(getActivity());
+        AppCompatActivity activity= (AppCompatActivity) getActivity();
+        activity.getSupportActionBar().setTitle("Profile");
         checkThemeColor();
         checkprofilephoto();
         checkuserandemail();
