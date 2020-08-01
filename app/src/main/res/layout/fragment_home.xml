@@ -30,28 +30,98 @@
                android:id="@+id/linearlayout1"
                android:layout_gravity="center_horizontal"
                android:orientation="vertical">
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="WHY US?"
+                   android:layout_marginTop="10dp"
+                   android:layout_gravity="center"
+                   android:fontFamily="@font/sanspro"
+                   />
                <de.hdodenhof.circleimageview.CircleImageView
                    android:layout_width="80dp"
                    android:layout_height="80dp"
-                  android:layout_marginLeft="10dp"
                    android:layout_marginBottom="10dp"
                    android:id="@+id/home_profile1"
+                   android:layout_gravity="center"
                    android:src="@drawable/user"
                    />
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="Helli"
-                   android:layout_marginTop="10dp"
+                   android:text="Wondering Why us? Because we provide the best suitable job that is comfortable for u.We Just take  few of your information to make sure which job is best for you."
+                   android:fontFamily="@font/lobster"
                    android:paddingLeft="10dp"
                    android:id="@+id/home_profile1_tv"
                    />
            </LinearLayout>
        </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        app:cardCornerRadius="5dp"
+        android:layout_margin="20dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/linearlayout4"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WHY REGISTRATION FEE?"
+                android:layout_gravity="center"
+                android:fontFamily="@font/hom"
+                android:layout_marginTop="10dp"
+                />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/home4"
+                android:layout_gravity="center"
+                android:src="@drawable/payment"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Why We Charge?"
+                android:fontFamily="@font/sanspro"
+                android:id="@+id/home4_tv"
+                android:layout_gravity="center"
+                android:paddingLeft="10dp"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.For Maintenance"
+                android:layout_gravity="center"
+                android:fontFamily="@font/sanspro"
+                android:paddingLeft="10dp"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2.Platform Fee"
+                android:fontFamily="@font/sanspro"
+                android:paddingLeft="10dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
        <androidx.cardview.widget.CardView
            android:layout_width="100dp"
            android:layout_height="200dp"
-           android:layout_row="1"
+           android:layout_row="2"
            android:layout_column="0"
            android:layout_rowWeight="1"
            android:layout_columnWeight="1"
@@ -64,52 +134,48 @@
                android:id="@+id/linearlayout2"
                android:layout_gravity="center_horizontal"
                android:orientation="vertical">
+               <TextView
+                   android:layout_marginTop="10dp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="WANT TO KNOW OUR LOCATION?"
+                   android:layout_gravity="center"
+                   android:fontFamily="@font/hom"
+                   />
                <de.hdodenhof.circleimageview.CircleImageView
                    android:layout_width="80dp"
                    android:layout_height="80dp"
-                   android:layout_marginLeft="10dp"
                    android:id="@+id/home_profile2"
                    android:src="@drawable/address"
+                   android:layout_gravity="center"
                    android:layout_marginBottom="10dp"
                    />
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:id="@+id/home_profile2_tv"
-                   android:text="Helo this is satish yadav from eyuu aygdu ayuggua ayugdaud ayguau afduag"
+
+                   android:fontFamily="@font/alex"
+                   android:text="We provide job all over the Following cities"
                    android:textAlignment="center"
-                   />
-           </LinearLayout>
-       </androidx.cardview.widget.CardView>
-       <androidx.cardview.widget.CardView
-           android:layout_width="100dp"
-           android:layout_height="200dp"
-           android:layout_row="2"
-           android:layout_column="0"
-           android:layout_rowWeight="1"
-           android:layout_columnWeight="1"
-           app:cardCornerRadius="5dp"
-           android:layout_margin="20dp"
-           >
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:layout_gravity="center_horizontal"
-               android:id="@+id/linearlayout3"
-               android:orientation="vertical">
-               <de.hdodenhof.circleimageview.CircleImageView
-                   android:layout_width="80dp"
-                   android:layout_height="80dp"
-                   android:id="@+id/home3"
-                   android:src="@drawable/number"
-                   android:layout_marginLeft="10dp"
+                   android:layout_marginTop="10dp"
+                   android:paddingLeft="10dp"
                    />
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="Helli"
-                   android:id="@+id/home3_tv"
+                   android:fontFamily="@font/alex"
+                   android:text="1.Bangalore"
                    android:textAlignment="center"
+                   android:paddingLeft="10dp"
+                   />
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="@font/alex"
+                   android:text="2.Bihar"
+                   android:textAlignment="center"
+                   android:paddingLeft="10dp"
                    />
            </LinearLayout>
        </androidx.cardview.widget.CardView>
@@ -127,56 +193,53 @@
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:layout_gravity="center_horizontal"
-               android:id="@+id/linearlayout4"
+               android:id="@+id/linearlayout3"
                android:orientation="vertical">
+               <TextView
+                   android:layout_marginTop="10dp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="CONTACT US"
+                   android:layout_gravity="center"
+                   android:fontFamily="@font/hom"
+                   />
                <de.hdodenhof.circleimageview.CircleImageView
                    android:layout_width="80dp"
                    android:layout_height="80dp"
-                   android:id="@+id/home4"
-                   android:layout_marginLeft="10dp"
-                   android:src="@drawable/ic_email_black_24dp"
+                   android:id="@+id/home3"
+                   android:src="@drawable/number"
+                   android:layout_gravity="center"
                    />
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="Email"
-                   android:id="@+id/home4_tv"
+                   android:text="You can contact us on below Information"
+                   android:paddingLeft="10dp"
+                   android:id="@+id/home3_tv"
+                   android:fontFamily="@font/roboto"
                    android:textAlignment="center"
+                   />
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="@font/roboto"
+                   android:text="mirzawebdev@gmail.com"
+                   android:textAlignment="center"
+                   android:paddingLeft="10dp"
+                   />
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="@font/roboto"
+                   android:text="+22 8553852125"
+                   android:textAlignment="center"
+                   android:paddingLeft="10dp"
                    />
            </LinearLayout>
        </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="200dp"
-        android:layout_row="4"
-        android:layout_column="0"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        app:cardCornerRadius="5dp"
-        android:layout_margin="20dp"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/linearlayout5"
-            android:orientation="vertical">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:id="@+id/home5"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_email_black_24dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:id="@+id/home5_tv"
-                android:textAlignment="center"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+
+
+
 </GridLayout>
 </ScrollView>
 </LinearLayout>

@@ -197,6 +197,47 @@
                         />
                 </RadioGroup>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="13dp"
+                android:layout_marginEnd="10dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/work"
+                    android:drawablePadding="5dp"
+                    android:paddingRight="10dp"
+                    android:layout_margin="8dp"
+                    android:hint="Enter Your Work"
+                    android:background="@drawable/loginback"
+                    android:id="@+id/profile_skill"
+                    android:maxHeight="200dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="13dp"
+                android:layout_marginEnd="10dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/experience"
+                    android:drawablePadding="5dp"
+                    android:paddingRight="10dp"
+                    android:layout_margin="8dp"
+                    android:inputType="number"
+                    android:hint="Enter Work Experience"
+                    android:background="@drawable/loginback"
+                    android:id="@+id/profile_skillexperience"
+                    android:maxHeight="200dp" />
+            </LinearLayout>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

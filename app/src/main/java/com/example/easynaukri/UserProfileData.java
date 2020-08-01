@@ -15,6 +15,8 @@ public class UserProfileData {
     public String PinCodeData;
     public String GenderData;
     public String SessionData;
+    public String WorkData;
+    public String WorkExperienceData;
 
     public UserProfileData(){
 
@@ -27,7 +29,7 @@ public class UserProfileData {
         SessionData=session;
     }
 
-    public UserProfileData(String fullNameData, String fatherNameData, String motherNameData, String dobData, String addressData, String stateData, String cityData, String pinCodeData, String genderData) {
+    public UserProfileData(String fullNameData, String fatherNameData, String motherNameData, String dobData, String addressData, String stateData, String cityData, String pinCodeData, String genderData,String work,String workexperience) {
         FullNameData = fullNameData;
         FatherNameData = fatherNameData;
         MotherNameData = motherNameData;
@@ -37,5 +39,7 @@ public class UserProfileData {
         CityData = cityData;
         PinCodeData = pinCodeData;
         GenderData = genderData;
+        WorkData=work;
+        WorkExperienceData=workexperience;
     }
 }

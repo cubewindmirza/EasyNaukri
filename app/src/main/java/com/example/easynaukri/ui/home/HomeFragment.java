@@ -94,7 +94,7 @@ public class HomeFragment extends Fragment {
         activity.getSupportActionBar().setTitle("Home");
           checkThemeColor();
          // checkprofilephoto();
-          checkuserandemailnumber();
+          //checkuserandemailnumber();
         //super.onViewCreated(view, savedInstanceState);
     }
     public void checkprofilephoto(){

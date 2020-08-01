@@ -3,56 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#60130C13"
+    android:background="#60050313"
     android:gravity="center_horizontal"
     android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center"
     >
-   <EditText
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:hint="upi id"
-       android:id="@+id/upiid"
-       />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Googlepay"
         android:layout_marginTop="20dp"
         android:id="@+id/googlepay"
-        android:background="@drawable/loginback"
+        android:fontFamily="@font/hom"
+        android:textColor="#ffffff"
+        android:background="@drawable/googlepayback"
         />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Paytm"
+        android:text="All IN ONE PAY"
         android:layout_marginTop="20dp"
         android:id="@+id/paytm"
-        android:background="@drawable/loginback"
+        android:fontFamily="@font/hom"
+        android:textColor="#ffffff"
+        android:background="@drawable/paytm"
         />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PhonePay"
-        android:layout_marginTop="20dp"
-        android:id="@+id/phonepay"
-        android:background="@drawable/loginback"
-        />
+
 </LinearLayout>
- <ScrollView
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     android:layout_marginTop="20dp"
-     android:layout_marginBottom="20dp">
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:layout_gravity="center"
-      android:layout_margin="80dp"
+      android:layout_margin="30dp"
       android:background="#fFFFFF"
       android:orientation="vertical"
       >
@@ -61,12 +55,14 @@
           android:layout_height="wrap_content"
           android:orientation="vertical"
           android:layout_marginBottom="30dp"
-          android:layout_marginTop="30dp"
+          android:layout_marginTop="25dp"
           android:gravity="center"
           >
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
+              android:fontFamily="@font/hom"
+              android:textSize="25sp"
               android:text="Receipt"/>
       </LinearLayout>
       <LinearLayout
@@ -79,11 +75,13 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:paddingLeft="30dp"
+              android:fontFamily="@font/sanspro"
               android:text="Name:"/>
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:paddingLeft="10dp"
+              android:fontFamily="@font/sanspro"
               android:id="@+id/paymentusername"/>
       </LinearLayout>
       <LinearLayout
@@ -96,11 +94,13 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:paddingLeft="30dp"
+              android:fontFamily="@font/sanspro"
               android:text="Amount:"/>
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:paddingLeft="10dp"
+              android:fontFamily="@font/sanspro"
               android:id="@+id/paymentamount"/>
       </LinearLayout>
       <LinearLayout
@@ -113,11 +113,13 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:paddingLeft="30dp"
+              android:fontFamily="@font/sanspro"
               android:text="TranscationID:"/>
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:paddingLeft="10dp"
+              android:fontFamily="@font/sanspro"
               android:id="@+id/paymenttransid"/>
       </LinearLayout>
       <LinearLayout
@@ -130,11 +132,13 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:paddingLeft="30dp"
+              android:fontFamily="@font/sanspro"
               android:text="Date :"/>
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:paddingLeft="10dp"
+              android:fontFamily="@font/sanspro"
               android:id="@+id/paymentdate"/>
       </LinearLayout>
       <LinearLayout
@@ -147,11 +151,13 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:paddingLeft="30dp"
+              android:fontFamily="@font/sanspro"
               android:text="Time:"/>
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:paddingLeft="10dp"
+              android:fontFamily="@font/sanspro"
               android:id="@+id/paymenttime"/>
       </LinearLayout>
       <LinearLayout
@@ -164,14 +170,36 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:paddingLeft="30dp"
+              android:fontFamily="@font/sanspro"
               android:text="Payment Method:"/>
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:paddingLeft="10dp"
+              android:fontFamily="@font/sanspro"
               android:id="@+id/paymentmethod"/>
+      </LinearLayout>
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_marginBottom="30dp"
+          >
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:paddingLeft="30dp"
+              android:fontFamily="@font/sanspro"
+              android:text="Payment Status:"/>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:paddingLeft="10dp"
+              android:fontFamily="@font/sanspro"
+              android:id="@+id/paymentstatus"/>
       </LinearLayout>
 
   </LinearLayout>
- </ScrollView>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

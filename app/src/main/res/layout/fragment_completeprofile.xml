@@ -5,6 +5,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,6 +42,7 @@
                 android:layout_marginTop="30dp"
                 android:includeFontPadding="false"
                 android:text="username"
+                android:fontFamily="@font/home1"
                 android:textColor="#fff"
                 android:textSize="20sp" />
 
@@ -43,6 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:fontFamily="@font/home1"
                 android:includeFontPadding="false"
                 android:textColor="#fff"
                 android:text="email@gmail.com"
@@ -53,33 +62,9 @@
             </LinearLayout>
 
     </LinearLayout>
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:gravity="center"
-      android:orientation="horizontal"
-      android:layout_marginTop="-40dp"
-      >
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="5dp"
-        app:cardCornerRadius="30dp"
-        app:contentPadding="10dp"
-        android:layout_gravity="center"
-        >
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/wrong"
-                />
-
-    </androidx.cardview.widget.CardView>
 
 
-  </LinearLayout>
+
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -103,6 +88,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="FullName:"
+              android:fontFamily="@font/hom"
               android:layout_marginLeft="15dp"
               android:gravity="center"
               android:id="@+id/profile_fullnamedata"
@@ -125,6 +111,7 @@
               android:layout_height="wrap_content"
               android:text="Email:"
               android:layout_marginLeft="15dp"
+              android:fontFamily="@font/hom"
               android:gravity="center"
               android:id="@+id/profile_emaildata"
               />
@@ -145,6 +132,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="Address:"
+              android:fontFamily="@font/hom"
               android:layout_marginLeft="15dp"
               android:gravity="center"
               android:id="@+id/profile_addressdata"
@@ -168,11 +156,56 @@
               android:text="PaymentStatus:"
               android:layout_marginLeft="15dp"
               android:gravity="center"
+              android:fontFamily="@font/hom"
               android:id="@+id/payment_status"
               />
 
       </LinearLayout>
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_marginBottom="15dp"
+          android:layout_gravity="center"
+          >
+          <ImageView
+              android:layout_width="25dp"
+              android:layout_height="25dp"
+              android:src="@drawable/work"/>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Work:"
+              android:layout_marginLeft="15dp"
+              android:gravity="center"
+              android:fontFamily="@font/hom"
+              android:id="@+id/profile_workdata"
+              />
 
+      </LinearLayout>
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_marginBottom="15dp"
+          android:layout_gravity="center"
+          >
+          <ImageView
+              android:layout_width="25dp"
+              android:layout_height="25dp"
+              android:src="@drawable/experience"/>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="WorkExperience"
+              android:layout_marginLeft="15dp"
+              android:gravity="center"
+              android:fontFamily="@font/hom"
+              android:id="@+id/profile_workexperiencedata"
+              />
+
+      </LinearLayout>
   </LinearLayout>
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

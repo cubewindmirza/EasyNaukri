@@ -1,6 +1,8 @@
 package com.example.easynaukri.ui.slideshow;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,12 +17,16 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.easynaukri.PaymentDetails;
 import com.example.easynaukri.R;
+import com.example.easynaukri.UserProfileData;
+import com.example.easynaukri.checksum;
 import com.example.easynaukri.logged_in_page;
 import com.example.easynaukri.ui.InternetConnection;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,22 +43,24 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Random;
 
 import static android.app.Activity.RESULT_OK;
 
 public class SlideshowFragment extends Fragment {
    Button googlepay,paytm,phonepay;
-   EditText ed_UpiId;
-   TextView tv_Name,tv_Method,tv_Amount,tv_Transid,tv_Date,tv_Time;
+   //EditText ed_UpiId;
+   TextView tv_Name,tv_Method,tv_Amount,tv_Transid,tv_Date,tv_Time,tv_PaymentStatus;
 
     String GOOGLE_PAY_PACKAGE_NAME = "com.google.android.apps.nbu.paisa.user";
     String PAYTM_PACKAGE_NAME = "net.one97.paytm";
     String PHONE_PAY_PACKAGE_NAME = "com.phonepe.app";
     int GOOGLE_PAY_REQUEST_CODE = 123;
     String upiid="8317359648@paytm";
-    String amount="1";
+    String amount="199";
     String transid="100";
     String paymentmethod="";
+    String statuspa="pending";
 
     FirebaseAuth firebaseAuth;
     InternetConnection connection=new InternetConnection();
@@ -77,14 +85,19 @@ public class SlideshowFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         googlepay=view.findViewById(R.id.googlepay);
         paytm=view.findViewById(R.id.paytm);
-        phonepay=view.findViewById(R.id.phonepay);
+       // phonepay=view.findViewById(R.id.phonepay);
         tv_Name=view.findViewById(R.id.paymentusername);
         tv_Amount=view.findViewById(R.id.paymentamount);
         tv_Transid=view.findViewById(R.id.paymenttransid);
         tv_Date=view.findViewById(R.id.paymentdate);
         tv_Time=view.findViewById(R.id.paymenttime);
         tv_Method=view.findViewById(R.id.paymentmethod);
-        ed_UpiId=view.findViewById(R.id.upiid);
+        tv_PaymentStatus=view.findViewById(R.id.paymentstatus);
+        checkPaymentDone();
+        //ed_UpiId=view.findViewById(R.id.upiid);
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS}, 101);
+        }
         AppCompatActivity activity= (AppCompatActivity) getActivity();
         activity.getSupportActionBar().setTitle("Payment");
         showReceipt();
@@ -97,16 +110,21 @@ public class SlideshowFragment extends Fragment {
         paytm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                payUsingUpi("paytmpackage");
+                //payUsingUpi("paytmpackage");
+                payUsingPaytm();
             }
         });
-        phonepay.setOnClickListener(new View.OnClickListener() {
+        /*phonepay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             payUsingUpi("phonepaypackage");
+             //payUsingUpi("phonepaypackage");
             }
         });
+
+         */
     }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -139,9 +157,11 @@ public class SlideshowFragment extends Fragment {
         Calendar c = Calendar.getInstance();
          SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
         transid="85538"+sdf.format(c.getTime())+"3750";
-        if(!ed_UpiId.getText().toString().equals("")){
+        /*if(!ed_UpiId.getText().toString().equals("")){
             upiid=ed_UpiId.getText().toString();
         }
+
+         */
         Uri uri =
                 new Uri.Builder()
                         .scheme("upi")
@@ -160,18 +180,15 @@ public class SlideshowFragment extends Fragment {
         if(nameofpackage.equals("googlepackage")){
             intent.setPackage(GOOGLE_PAY_PACKAGE_NAME);
             paymentmethod="GooglePay";
-            googlepay.setSelected(true);
         }
         else if(nameofpackage.equals("paytmpackage"))
         {
             intent.setPackage(PAYTM_PACKAGE_NAME);
             paymentmethod="Paytm";
-            paytm.setSelected(true);
         }
         else if(nameofpackage.equals("phonepaypackage")){
             intent.setPackage(PHONE_PAY_PACKAGE_NAME);
             paymentmethod="PhonePay";
-            phonepay.setSelected(true);
         }
         Intent upiPayIntent = new Intent(Intent.ACTION_VIEW);
         upiPayIntent.setData(uri);
@@ -220,7 +237,7 @@ public class SlideshowFragment extends Fragment {
                 DatabaseReference myRef = database.getReference().child(useruid).child("PaymentDetails");
                 HashMap<String,Object> result=new HashMap<String,Object>();
                 Calendar c = Calendar.getInstance();
-                SimpleDateFormat sdfdate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                SimpleDateFormat sdfdate = new SimpleDateFormat("dd-MM-yyyy");
                 SimpleDateFormat sdftime = new SimpleDateFormat(" HH:mm:ss");
                 String strDate = sdfdate.format(c.getTime());
                 String strTime = sdftime.format(c.getTime());
@@ -233,9 +250,16 @@ public class SlideshowFragment extends Fragment {
                 result.put("PaymentMethod",paymentmethod);
 
                  */
-                PaymentDetails details=new PaymentDetails(amount,transid,strDate,strTime,paymentmethod,cancel,payment);
+                statuspa="Success";
+                PaymentDetails details=new PaymentDetails(amount,transid,strDate,strTime,paymentmethod,cancel,payment,statuspa);
                 myRef.setValue(details);
                 Toast.makeText(getActivity(), "Transaction successful.", Toast.LENGTH_SHORT).show();
+                DatabaseReference databaseReference=database.getReference().child("TotalPayment").child(useruid);
+                Random r=new Random();
+                int generated=r.nextInt(1000);
+                HashMap<String,String> res=new HashMap<>();
+                res.put(generated+strDate+strTime,"Paid");
+                databaseReference.setValue(res);
                 // Log.e("UPI", "payment successfull: "+approvalRefNo);
             }
             else if("Payment cancelled by user.".equals(paymentCancel)) {
@@ -246,7 +270,7 @@ public class SlideshowFragment extends Fragment {
                 DatabaseReference myRef = database.getReference().child(useruid).child("PaymentDetails");
                 HashMap<String,Object> result=new HashMap<String,Object>();
                 Calendar c = Calendar.getInstance();
-                SimpleDateFormat sdfdate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                SimpleDateFormat sdfdate = new SimpleDateFormat("dd-MM-yyyy");
                 SimpleDateFormat sdftime = new SimpleDateFormat(" HH:mm:ss");
                 String strDate = sdfdate.format(c.getTime());
                 String strTime = sdftime.format(c.getTime());
@@ -260,7 +284,7 @@ public class SlideshowFragment extends Fragment {
                 result.put("PaymentMethod",paymentmethod);
 
                  */
-                PaymentDetails details=new PaymentDetails(amount,transid,strDate,strTime,paymentmethod,cancel,payment);
+                PaymentDetails details=new PaymentDetails(amount,transid,strDate,strTime,paymentmethod,cancel,payment,statuspa);
                 myRef.setValue(details);
                 Toast.makeText(getActivity(), "Payment cancelled by user.", Toast.LENGTH_SHORT).show();
                 // Log.e("UPI", "Cancelled by user: "+approvalRefNo);
@@ -274,7 +298,7 @@ public class SlideshowFragment extends Fragment {
                 DatabaseReference myRef = database.getReference().child(useruid).child("PaymentDetails");
                 HashMap<String,Object> result=new HashMap<String,Object>();
                 Calendar c = Calendar.getInstance();
-                SimpleDateFormat sdfdate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                SimpleDateFormat sdfdate = new SimpleDateFormat("dd-MM-yyyy");
                 SimpleDateFormat sdftime = new SimpleDateFormat(" HH:mm:ss");
                 String strDate = sdfdate.format(c.getTime());
                 String strTime = sdftime.format(c.getTime());
@@ -290,7 +314,7 @@ public class SlideshowFragment extends Fragment {
                 result.put("PaymentMethod",paymentmethod);
 
                  */
-                PaymentDetails details=new PaymentDetails(amount,transid,strDate,strTime,paymentmethod,cancel,payment);
+                PaymentDetails details=new PaymentDetails(amount,transid,strDate,strTime,paymentmethod,cancel,payment,statuspa);
                 myRef.setValue(details);
                 Toast.makeText(getActivity(), "Transaction failed.Please try again", Toast.LENGTH_SHORT).show();
                 // Log.e("UPI", "failed payment: "+approvalRefNo);
@@ -303,7 +327,6 @@ public class SlideshowFragment extends Fragment {
         }
     }
     public void showReceipt(){
-        if(phonepay.isSelected()||paytm.isSelected()||googlepay.isSelected()){
             firebaseAuth = FirebaseAuth.getInstance();
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
@@ -318,18 +341,80 @@ public class SlideshowFragment extends Fragment {
                    String date=details.Date;
                    String time=details.Time;
                    String paymentmethod=details.PaymentMethod;
+                   String status=details.Status;
                    tv_Amount.setText(amount);
                    tv_Transid.setText(transid);
                    tv_Date.setText(date);
                    tv_Time.setText(time);
                    tv_Method.setText(paymentmethod);
+                   tv_PaymentStatus.setText(status);
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
             });
-        }
+        DatabaseReference databaseReference=database.getReference();
+        databaseReference.child(useruid).child("ProfileDetails").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UserProfileData data=dataSnapshot.getValue(UserProfileData.class);
+                String fullname=data.FullNameData;
+                tv_Name.setText(fullname);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+    public void payUsingPaytm(){
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdfdate = new SimpleDateFormat("ddMMyyyy");
+        SimpleDateFormat sdftime = new SimpleDateFormat(" HHmmss");
+        String strOrderId = sdfdate.format(c.getTime())+c.getTimeInMillis();
+        String strCustId = sdftime.format(c.getTime())+c.getTimeInMillis();
+        Random r=new Random();
+       int generated1= r.nextInt(100000);
+        int generated2= r.nextInt(100000);
+        String OrderId=generated1+strOrderId;
+        String CustId=generated2+strCustId;
+        Intent intent = new Intent(getContext(), checksum.class);
+        intent.putExtra("orderid",OrderId );
+        intent.putExtra("custid", CustId);
+        startActivity(intent);
+    }
+    public void checkPaymentDone(){
+        firebaseAuth = FirebaseAuth.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String useruid = firebaseUser.getUid();
+        DatabaseReference myRef = database.getReference().child(useruid).child("PaymentDetails");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                PaymentDetails details=snapshot.getValue(PaymentDetails.class);
+                String checkstatus=details.Status;
+                String checkpayment=details.Payment;
+                if(checkpayment.equals("Success")) {
+                  if(checkstatus.equals("Success")){
+                      Toast.makeText(getContext(),"You Have Doned The Payment",Toast.LENGTH_LONG).show();
+                      googlepay.setEnabled(false);
+                      paytm.setEnabled(false);
+                  }
+                  else{
+                      googlepay.setEnabled(true);
+                      paytm.setEnabled(true);
+                  }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

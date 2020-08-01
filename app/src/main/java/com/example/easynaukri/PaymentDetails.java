@@ -10,8 +10,9 @@ public class PaymentDetails {
     public String PaymentMethod;
     public String Cancel;
     public String Payment;
+    public String Status;
 
-    public PaymentDetails(String amount, String transactionId, String date, String time, String paymentMethod,String cancel,String payment) {
+    public PaymentDetails(String amount, String transactionId, String date, String time, String paymentMethod,String cancel,String payment,String status) {
         Amount = amount;
         TransactionId = transactionId;
         Date = date;
@@ -19,6 +20,7 @@ public class PaymentDetails {
         PaymentMethod = paymentMethod;
         Cancel=cancel;
         Payment=payment;
+        Status=status;
     }
 
     public PaymentDetails() {

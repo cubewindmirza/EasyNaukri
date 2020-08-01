@@ -27,7 +27,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class profile_details extends AppCompatActivity  {
-    EditText profile_FullName,profile_State,profile_FatherName,profile_MotherName,profile_Address,profile_PinCode,profile_City,profile_Dob;
+    EditText profile_FullName,profile_State,profile_FatherName,profile_MotherName,profile_Address,profile_PinCode,profile_City,profile_Dob,profile_Work,profile_Experience;
     Button profile_Update;
     RadioGroup profile_Gender;
     RadioButton profile_Check;
@@ -61,6 +61,8 @@ public class profile_details extends AppCompatActivity  {
         profile_City=findViewById(R.id.profile_city);
         profile_State=findViewById(R.id.profile_state);
         profile_Dob=findViewById(R.id.profile_dob);
+        profile_Work=findViewById(R.id.profile_skill);
+        profile_Experience=findViewById(R.id.profile_skillexperience);
         profile_Dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +91,7 @@ public class profile_details extends AppCompatActivity  {
             public void onClick(View v) {
                 if(checkUserData()) {
                     update_UserData();
+                    update_PaymentDetails();
                     sessionMangament.setsessionprofile(true);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference((FirebaseAuth.getInstance().getUid()));
@@ -110,10 +113,12 @@ public class profile_details extends AppCompatActivity  {
        String state=profile_State.getText().toString().trim();
        String city=profile_City.getText().toString().trim();
        String pincode=profile_PinCode.getText().toString().trim();
+       String work=profile_Work.getText().toString().trim();
+       String workexperience=profile_Experience.getText().toString().trim();
        int genderid=profile_Gender.getCheckedRadioButtonId();
        profile_Check=findViewById(genderid);
        String gender=profile_Check.getText().toString().trim();
-       UserProfileData userProfileData=new UserProfileData(fullname,fathername,mothername,dob,address,state,city,pincode,gender);
+       UserProfileData userProfileData=new UserProfileData(fullname,fathername,mothername,dob,address,state,city,pincode,gender,work,workexperience);
        DatabaseReference profile_data=databaseReference.child(firebaseUser.getUid()).child("ProfileDetails");
      /*  HashMap<String,Object> result=new HashMap<>();
        result.put("FullName",fullname);
@@ -138,6 +143,8 @@ public class profile_details extends AppCompatActivity  {
        String state=profile_State.getText().toString().trim();
        String city=profile_City.getText().toString().trim();
        String pincode=profile_PinCode.getText().toString().trim();
+       String work=profile_Work.getText().toString().trim();
+       String workexperience=profile_Experience.getText().toString().trim();
        boolean check=false;
        if(fullname.equals("")){
            profile_FullName.setError("Please Fill Your FullName");
@@ -162,6 +169,12 @@ public class profile_details extends AppCompatActivity  {
        }
        else if(pincode.equals("")){
            profile_PinCode.setError("Please Fill The Pincode");
+       }
+       else if(work.equals("")){
+           profile_Work.setError("Please Enter Your Work");
+       }
+       else if(workexperience.equals("")){
+           profile_Experience.setError("Please Enter Work Experience");
        }
        else
            check=true;
@@ -197,7 +210,23 @@ public class profile_details extends AppCompatActivity  {
       startActivity(i);
   }
 
-
+public void update_PaymentDetails(){
+    firebaseAuth = FirebaseAuth.getInstance();
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+    String useruid = firebaseUser.getUid();
+    DatabaseReference myRef = database.getReference().child(useruid).child("PaymentDetails");
+    HashMap<String,String> result=new HashMap<>();
+    result.put("Amount","199");
+    result.put("Cancel","");
+    result.put("Date","");
+    result.put("Payment","Pending");
+    result.put("PaymentMethod","Pending");
+    result.put("Time","");
+    result.put("TranscationId","");
+    result.put("Status","Pending");
+    myRef.setValue(result);
+}
 
 
 }

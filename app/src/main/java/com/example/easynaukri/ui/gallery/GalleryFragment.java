@@ -41,6 +41,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 
+import com.example.easynaukri.PaymentDetails;
 import com.example.easynaukri.R;
 import com.example.easynaukri.UserProfileData;
 import com.example.easynaukri.color_management;
@@ -82,7 +83,8 @@ import static android.app.Activity.RESULT_OK;
 public class GalleryFragment extends Fragment {
 
   int imagepickcode=1;
-  TextView tv_profileusername,tv_profileemail,tv_profileedit,tv_profileEmailData,tv_profileFullnameData,tv_profileAddressData;
+  TextView tv_profileusername,tv_profileemail,tv_profileedit,tv_profileEmailData,tv_profileFullnameData,tv_profileAddressData,tv_profileWorkData,
+          tv_profileWorkExperienceData,tv_PaymentData;
   Uri uri;
   int count=0;
 
@@ -140,6 +142,9 @@ public class GalleryFragment extends Fragment {
         tv_profileFullnameData=view.findViewById(R.id.profile_fullnamedata);
         tv_profileEmailData=view.findViewById(R.id.profile_emaildata);
         tv_profileAddressData=view.findViewById(R.id.profile_addressdata);
+        tv_profileWorkData=view.findViewById(R.id.profile_workdata);
+        tv_profileWorkExperienceData=view.findViewById(R.id.profile_workexperiencedata);
+        tv_PaymentData=view.findViewById(R.id.payment_status);
         linearLayout=view.findViewById(R.id.complete_profile_theme);
         sp=getActivity().getSharedPreferences(PREF_KEY,Context.MODE_PRIVATE);
         color_theme=new color_management(getActivity());
@@ -197,8 +202,25 @@ public class GalleryFragment extends Fragment {
                 String fullname=data.FullNameData;
                 //String email=data.Email;
                 String address=data.CityData;
+                String work=data.WorkData;
+                String workexp=data.WorkExperienceData;
                 tv_profileFullnameData.setText(fullname);
                 tv_profileAddressData.setText(address);
+                tv_profileWorkData.setText(work);
+                tv_profileWorkExperienceData.setText(workexp);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        databaseReference.child(userid).child("PaymentDetails").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                PaymentDetails details=dataSnapshot.getValue(PaymentDetails.class);
+                String payment=details.Payment;
+                tv_PaymentData.setText(payment);
             }
 
             @Override
