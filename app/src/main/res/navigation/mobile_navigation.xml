@@ -3,24 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_job">
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.easynaukri.ui.home.HomeFragment"
+        android:name="com.example.easynaukri.ui.homeui.homeui"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/homeui_fragment" />
 
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.easynaukri.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:label="Profile"
         tools:layout="@layout/fragment_completeprofile" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.easynaukri.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="Payment"
         tools:layout="@layout/fragment_aboutus" />
 
     <fragment
@@ -34,6 +34,16 @@
         android:name="com.example.easynaukri.ui.tools.ToolsFragment"
         android:label="logout"
         tools:layout="@layout/fragment_logout" />
+    <fragment
+        android:id="@+id/nav_job"
+        android:name="com.example.easynaukri.ui.job.job"
+        android:label="job"
+        tools:layout="@layout/job_fragment" />
 
+    <fragment
+        android:id="@+id/nav_aboutus"
+        android:name="com.example.easynaukri.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
 
 </navigation>

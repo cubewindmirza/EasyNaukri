@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment {
         linearLayout3=view.findViewById(R.id.linearlayout3);
         linearLayout4=view.findViewById(R.id.linearlayout4);
         AppCompatActivity activity= (AppCompatActivity) getActivity();
-        activity.getSupportActionBar().setTitle("Home");
+        activity.getSupportActionBar().setTitle("About Us");
           checkThemeColor();
          // checkprofilephoto();
           //checkuserandemailnumber();

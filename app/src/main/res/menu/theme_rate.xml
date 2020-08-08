@@ -5,9 +5,6 @@
         android:id="@+id/action_theme"
         android:icon="@drawable/theme"
         android:title="Select Theme" />
-    <item
-        android:id="@+id/action_rate"
-        android:icon="@drawable/rate_menu"
-        android:title="Rate" />
+
     </group>
 </menu>

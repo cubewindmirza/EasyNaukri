@@ -39,7 +39,7 @@ import java.util.Random;
 
 public class checksum extends AppCompatActivity implements PaytmPaymentTransactionCallback {
     FirebaseAuth firebaseAuth;
-    InternetConnection connection=new InternetConnection();
+    // InternetConnection connection=new InternetConnection();
     String custid="", orderId="", mid="";
     String status="Pending";
     @Override
@@ -47,7 +47,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
         //initOrderId();
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         Intent intent = getIntent();
         orderId = intent.getExtras().getString("orderid");
@@ -82,7 +82,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
                     "MID="+mid+
                     "&ORDER_ID=" + orderId+
                     "&CUST_ID="+custid+
-                    "&CHANNEL_ID=WAP&TXN_AMOUNT=199&WEBSITE=WEBSTAGING"+
+                    "&CHANNEL_ID=WAP&TXN_AMOUNT=299&WEBSITE=WEBSTAGING"+
                             "&CALLBACK_URL="+ varifyurl+"&INDUSTRY_TYPE_ID=Retail";
 
             JSONObject jsonObject = jsonParser.makeHttpRequest(url,"POST",param);
@@ -121,7 +121,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
             paramMap.put("ORDER_ID", orderId);
             paramMap.put("CUST_ID", custid);
             paramMap.put("CHANNEL_ID", "WAP");
-            paramMap.put("TXN_AMOUNT", "199");
+            paramMap.put("TXN_AMOUNT", "299");
             paramMap.put("WEBSITE", "WEBSTAGING");
             paramMap.put("CALLBACK_URL" ,varifyurl);
             //paramMap.put( "EMAIL" , "abc@gmail.com");   // no need
@@ -165,7 +165,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
                 String paymentmethod="Paytm";
                 String cancel="";
                 status="Success";
-                PaymentDetails details=new PaymentDetails("199",orderId,strDate,strTime,paymentmethod,cancel,payment,status);
+                PaymentDetails details=new PaymentDetails("299",orderId,strDate,strTime,paymentmethod,cancel,payment,status);
                 myRef.setValue(details);
                 Toast.makeText(this,"Success",Toast.LENGTH_LONG).show();
                 DatabaseReference databaseReference=database.getReference().child("TotalPayment").child(useruid);
@@ -185,7 +185,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
                 String payment="Failed";
                 String paymentmethod="All In One Pay";
                 String cancel="Yes";
-                PaymentDetails details=new PaymentDetails("199",orderId,strDate,strTime,paymentmethod,cancel,payment,status);
+                PaymentDetails details=new PaymentDetails("299",orderId,strDate,strTime,paymentmethod,cancel,payment,status);
                 myRef.setValue(details);
                 Toast.makeText(this,"Failed",Toast.LENGTH_LONG).show();
                 finish();
@@ -230,7 +230,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         String payment="failed";
         String paymentmethod="All In One Pay";
         String cancel="Canceled By User";
-        PaymentDetails details=new PaymentDetails("199",orderId,strDate,strTime,paymentmethod,cancel,payment,status);
+        PaymentDetails details=new PaymentDetails("299",orderId,strDate,strTime,paymentmethod,cancel,payment,status);
         myRef.setValue(details);
         finish();
         Toast.makeText(this,"Transcation Canceled",Toast.LENGTH_LONG).show();
@@ -252,7 +252,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         String payment="failed";
         String paymentmethod="All In One Pay";
         String cancel="Canceled By User";
-        PaymentDetails details=new PaymentDetails("199",orderId,strDate,strTime,paymentmethod,cancel,payment,status);
+        PaymentDetails details=new PaymentDetails("299",orderId,strDate,strTime,paymentmethod,cancel,payment,status);
         myRef.setValue(details);
         finish();
         Toast.makeText(this,"Transcation Canceled",Toast.LENGTH_LONG).show();

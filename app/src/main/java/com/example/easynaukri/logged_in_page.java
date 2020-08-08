@@ -173,7 +173,7 @@ public class logged_in_page extends AppCompatActivity   {
 
        mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools,  R.id.nav_logout)
+                R.id.nav_tools,  R.id.nav_logout,R.id.nav_job,R.id.nav_aboutus)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -421,15 +421,8 @@ public class logged_in_page extends AppCompatActivity   {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_theme:{
-                selectcolor();
-                break;
-            }
-            case R.id.action_rate:{
-                Toast.makeText(this,"Rate Selected",Toast.LENGTH_SHORT).show();
-                break;
-            }
+        if (item.getItemId() == R.id.action_theme) {
+            selectcolor();
         }
         return true;
     }

@@ -10,17 +10,25 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
+            android:id="@+id/nav_job"
+            android:icon="@drawable/jobvacancy"
+            android:title="Jobs" />
+        <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/profile"
-            android:title="@string/menu_gallery" />
+            android:title="Profile" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/wrong"
+            android:icon="@drawable/payment"
             android:title="Payment" />
         <item
             android:id="@+id/nav_tools"
             android:icon="@drawable/pdf"
             android:title="@string/menu_tools" />
+        <item
+            android:id="@+id/nav_aboutus"
+            android:icon="@drawable/aboutus_menu"
+            android:title="About Us" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/logout"

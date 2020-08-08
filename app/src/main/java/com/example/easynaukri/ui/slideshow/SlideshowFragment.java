@@ -55,14 +55,14 @@ public class SlideshowFragment extends Fragment {
     String GOOGLE_PAY_PACKAGE_NAME = "com.google.android.apps.nbu.paisa.user";
     String PAYTM_PACKAGE_NAME = "net.one97.paytm";
     String PHONE_PAY_PACKAGE_NAME = "com.phonepe.app";
-    int GOOGLE_PAY_REQUEST_CODE = 123;
-    String upiid="8317359648@paytm";
-    String amount="199";
+    String upiid="paytm-26378481@paytm";
+    String amount="299";
     String transid="100";
     String paymentmethod="";
     String statuspa="pending";
 
-    FirebaseAuth firebaseAuth;
+    FirebaseAuth firebaseAuth; int GOOGLE_PAY_REQUEST_CODE = 123;
+
     InternetConnection connection=new InternetConnection();
     private SlideshowViewModel slideshowViewModel;
 

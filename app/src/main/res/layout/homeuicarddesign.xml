@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relative_recyclehomeui">
+            <androidx.cardview.widget.CardView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                android:layout_margin="20dp"
+                android:paddingBottom="20dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/linearlayout_recyclelisthomeui"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WHY US?"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/titlehomeui"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/aller"
+                        />
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/modelhomeui"
+                        android:layout_gravity="center"
+                        android:src="@drawable/user"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Engineer"
+                        android:fontFamily="@font/sanspro"
+                        android:paddingLeft="10dp"
+                        android:gravity="center"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/jobhomeui"
+                        />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+</LinearLayout>

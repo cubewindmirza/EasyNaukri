@@ -44,11 +44,12 @@ public class Forgot_password extends AppCompatActivity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!emailet.equals("")) {
+                if(!emailet.getText().toString().equals("")) {
                     passwordreset();
                 }
-                else
+                else {
                     emailet.setError("Email cannot be empty");
+                }
             }
         });
     }
@@ -59,8 +60,8 @@ public class Forgot_password extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
     public void passwordreset(){
-        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
-        if(firebaseUser!=null) {
+       // FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+        //if(firebaseUser!=null) {
             firebaseAuth.sendPasswordResetEmail(emailet.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -73,6 +74,6 @@ public class Forgot_password extends AppCompatActivity {
 
                 }
             });
-        }
+       // }
     }
 }
