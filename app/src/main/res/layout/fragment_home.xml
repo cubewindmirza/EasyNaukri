@@ -176,8 +176,8 @@
                    android:fontFamily="@font/hom"
                    />
                <de.hdodenhof.circleimageview.CircleImageView
-                   android:layout_width="100dp"
-                   android:layout_height="100dp"
+                   android:layout_width="80dp"
+                   android:layout_height="80dp"
                    android:id="@+id/home_profile2"
                    android:src="@drawable/aboutuslocation"
                    android:layout_gravity="center"
@@ -208,6 +208,7 @@
                    android:text="2.Bihar"
                    android:textAlignment="center"
                    android:paddingLeft="10dp"
+                   android:paddingBottom="20dp"
                    />
            </LinearLayout>
        </androidx.cardview.widget.CardView>

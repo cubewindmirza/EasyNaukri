@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,11 +24,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
 public class profile_details extends AppCompatActivity  {
-    EditText profile_FullName,profile_State,profile_FatherName,profile_MotherName,profile_Address,profile_PinCode,profile_City,profile_Dob,profile_Work,profile_Experience;
+    EditText profile_FullName,profile_State,profile_FatherName,profile_MotherName,profile_Address,profile_PinCode,profile_City,profile_Dob,profile_Work,profile_Experience,profile_PromoCode;
     Button profile_Update;
     RadioGroup profile_Gender;
     RadioButton profile_Check;
@@ -216,8 +218,8 @@ public void update_PaymentDetails(){
     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
     String useruid = firebaseUser.getUid();
     DatabaseReference myRef = database.getReference().child(useruid).child("PaymentDetails");
-    HashMap<String,String> result=new HashMap<>();
-    result.put("Amount","199");
+    HashMap<String,Object> result=new HashMap<>();
+    result.put("Amount",299);
     result.put("Cancel","");
     result.put("Date","");
     result.put("Payment","Pending");

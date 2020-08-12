@@ -85,6 +85,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="Dont Have an Account?"
+          android:fontFamily="@font/oswald"
           android:textColor="#ffffff"
           android:padding="10dp"
           android:textSize="20sp"/>
@@ -92,6 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SignUp"
+        android:fontFamily="@font/hom"
         android:id="@+id/signup"
         android:layout_marginBottom="20dp"
         android:textColor="#ffffff"

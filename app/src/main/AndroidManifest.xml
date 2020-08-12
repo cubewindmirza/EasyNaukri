@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ApplyJob"></activity>
+        <activity android:name=".ui.promocode.promocode"></activity>
+        <activity android:name=".ApplyJob" />
         <activity android:name=".model" />
         <activity android:name=".profile_details" />
         <activity

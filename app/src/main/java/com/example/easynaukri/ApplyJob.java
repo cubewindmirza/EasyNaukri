@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,10 +50,11 @@ public class ApplyJob extends AppCompatActivity {
     DatabaseReference databaseReference;
     String GOOGLE_PAY_PACKAGE_NAME = "com.google.android.apps.nbu.paisa.user";
     String upiid="paytm-26378481@paytm";
-    String amount="299";
+    int amount=299;
     String transid="100";
     String paymentmethod="";
     String statuspa="pending";
+    String jobtitle,salary;
 
     int GOOGLE_PAY_REQUEST_CODE = 123;
 
@@ -76,15 +79,16 @@ public class ApplyJob extends AppCompatActivity {
         tv_paymentstatus=findViewById(R.id.applyjob_paymentstatus);
         layout=findViewById(R.id.applyjob_back);
         color_theme=new color_management(this);
+        checkBonusData();
         getSupportActionBar().setTitle("Applying Job");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar));
         getUserData();
         checkThemeColor();
         Bundle bundle=getIntent().getExtras();
-        String jobtitle=bundle.getString("title");
+         jobtitle=bundle.getString("title");
         int imageid=bundle.getInt("image");
-         String salary=bundle.getString("salary");
+          salary=bundle.getString("salary");
        // int image=Integer.parseInt(imageid);
         tv_title.setText("Applying For: "+jobtitle);
         tv_salary.setText("Salary: "+salary);
@@ -92,7 +96,8 @@ public class ApplyJob extends AppCompatActivity {
         btn_payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog();
+               // showDialog();
+                showCustomDialog();
             }
         });
 
@@ -158,14 +163,6 @@ public class ApplyJob extends AppCompatActivity {
                 if(which==0){
                     Toast.makeText(getApplicationContext(),"googlepay",Toast.LENGTH_LONG).show();
                    // payUsingUpi("googlepay");
-                    showAlertDialog();
-                    Handler handler=new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            payUsingUpi("googlepay");
-                        }
-                    },5000);
 
                 }
                 else if(which==1){
@@ -175,6 +172,39 @@ public class ApplyJob extends AppCompatActivity {
             }
         });
         builder.create().show();
+    }
+    public void showCustomDialog(){
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        View view=getLayoutInflater().inflate(R.layout.paymentmethod,null);
+        builder.setView(view);
+        builder.setCancelable(false);
+        Button googlepay=view.findViewById(R.id.alertgooglepay);
+        Button allinone=view.findViewById(R.id.alertallinone);
+        Button canceldialog=view.findViewById(R.id.custom_canceldialog);
+        final AlertDialog dialog=builder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+        canceldialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
+        googlepay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                payUsingUpi("googlepay");
+                dialog.cancel();
+
+            }
+        });
+        allinone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                payUsingPaytm();
+                dialog.cancel();
+            }
+        });
     }
     public void payUsingPaytm(){
         Calendar c = Calendar.getInstance();
@@ -190,6 +220,9 @@ public class ApplyJob extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), checksum.class);
         intent.putExtra("orderid",OrderId );
         intent.putExtra("custid", CustId);
+        intent.putExtra("amount",amount);
+        intent.putExtra("jobtitle",jobtitle);
+        intent.putExtra("salary",salary);
         startActivity(intent);
     }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -236,7 +269,7 @@ public class ApplyJob extends AppCompatActivity {
                         .appendQueryParameter("mc", "")
                         .appendQueryParameter("tr", transid)
                         .appendQueryParameter("tn", "your-transaction-note")
-                        .appendQueryParameter("am", amount)
+                        .appendQueryParameter("am", String.valueOf(amount))
                         .appendQueryParameter("cu", "INR")
                         .appendQueryParameter("url", "your-transaction-url")
                         .build();
@@ -308,11 +341,18 @@ public class ApplyJob extends AppCompatActivity {
                 PaymentDetails details=new PaymentDetails(amount,transid,strDate,strTime,paymentmethod,cancel,payment,statuspa);
                 myRef.setValue(details);
                 Toast.makeText(getApplicationContext(), "Transaction successful.", Toast.LENGTH_SHORT).show();
-                DatabaseReference databaseReference=database.getReference().child("TotalPayment").child(useruid);
                 Random r=new Random();
                 int generated=r.nextInt(1000);
+                DatabaseReference updateapply=database.getReference().child(useruid).child("AppiledFor").child(jobtitle);
+                HashMap<String,String> apply=new HashMap<>();
+                apply.put("Salary",salary);
+                apply.put("Status","Success");
+                apply.put("DateTime",strDate+strTime);
+                updateapply.setValue(apply);
+                DatabaseReference databaseReference=database.getReference().child("TotalPayment").child(useruid).child(generated+strDate+strTime);
                 HashMap<String,String> res=new HashMap<>();
-                res.put(generated+strDate+strTime,"Paid");
+                res.put("Status","Success");
+                res.put("Amount",String.valueOf(amount));
                 databaseReference.setValue(res);
                 // Log.e("UPI", "payment successfull: "+approvalRefNo);
             }
@@ -338,6 +378,12 @@ public class ApplyJob extends AppCompatActivity {
                 result.put("PaymentMethod",paymentmethod);
 
                  */
+                DatabaseReference updateapply=database.getReference().child(useruid).child("AppiledFor").child(jobtitle);
+                HashMap<String,String> apply=new HashMap<>();
+                apply.put("Salary",salary);
+                apply.put("Status","Pending");
+                apply.put("DateTime",strDate+strTime);
+                updateapply.setValue(apply);
                 PaymentDetails details=new PaymentDetails(amount,transid,strDate,strTime,paymentmethod,cancel,payment,statuspa);
                 myRef.setValue(details);
                 Toast.makeText(getApplicationContext(), "Payment cancelled by user.", Toast.LENGTH_SHORT).show();
@@ -368,6 +414,12 @@ public class ApplyJob extends AppCompatActivity {
                 result.put("PaymentMethod",paymentmethod);
 
                  */
+                DatabaseReference updateapply=database.getReference().child(useruid).child("AppiledFor").child(jobtitle);
+                HashMap<String,String> apply=new HashMap<>();
+                apply.put("Salary",salary);
+                apply.put("Status","Pending");
+                apply.put("DateTime",strDate+strTime);
+                updateapply.setValue(apply);
                 PaymentDetails details=new PaymentDetails(amount,transid,strDate,strTime,paymentmethod,cancel,payment,statuspa);
                 myRef.setValue(details);
                 Toast.makeText(getApplicationContext(), "Transaction failed.Please try again", Toast.LENGTH_SHORT).show();
@@ -382,6 +434,42 @@ public class ApplyJob extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
+
+    public void checkBonusData(){
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String useruid = firebaseUser.getUid();
+        DatabaseReference myRef = database.getReference().child(useruid).child("ReferEarn");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Object bonus=snapshot.child("ActualWallet").getValue();
+                if(bonus.toString().equals("50")){
+                    amount=249;
+                }
+                else if(bonus.toString().equals("100")){
+                    amount=199;
+                }
+                else if(bonus.toString().equals("150")){
+                    amount=149;
+                }
+                else if(bonus.toString().equals("0")){
+                    amount=299;
+                }
+                else{
+                    amount=149;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
     public void checkThemeColor(){
         String blue="blue";
         String red="red";
@@ -432,19 +520,7 @@ public class ApplyJob extends AppCompatActivity {
 
         }
     }
-    private void showAlertDialog() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        final View customLayout = getLayoutInflater().inflate(R.layout.custom_alertdialog, null);
-        alertDialog.setView(customLayout);
-        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // send data from the AlertDialog to the Activity
-                Toast.makeText(getApplicationContext(),"Awesome ",Toast.LENGTH_LONG).show();
-            }
-        });
-        AlertDialog alert = alertDialog.create();
-        alert.setCanceledOnTouchOutside(false);
-        alert.show();
-    }
+  public void updateApplyFor(){
+
+  }
 }

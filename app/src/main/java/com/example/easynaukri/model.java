@@ -21,7 +21,7 @@ public class model extends AppCompatActivity {
     RecyclerAdapter adapter;
     ArrayList<homeData> list;
     LinearLayout layout;
-    String title,softtitle,salestitle,accounttitle;
+    String title,softtitle,salestitle,accounttitle,constructiontitle,computertitle;
      color_management color_theme;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,8 @@ public class model extends AppCompatActivity {
          softtitle="SOFTWARE FIELD";
          salestitle="SALES AND MARKETING";
          accounttitle="ACCOUNT AND FINANCE";
+         constructiontitle="CONSTRUCTION";
+         computertitle="COMPUTER WORK";
         String imageid=getIntent().getStringExtra("image");
        // String passcolor=getIntent().getStringExtra("passcolor");
        // String descp=getIntent().getStringExtra("descp");
@@ -75,6 +77,29 @@ public class model extends AppCompatActivity {
                     list.add(new homeData(jobData.financetitle, R.drawable.financemanager, jobData.financemanager, jobData.financeskill1, jobData.financeskill2, jobData.financeskill3, jobData.financeskill4, jobData.financeskill5, jobData.financeamount));
                     list.add(new homeData(jobData.bussinesstitle, R.drawable.bussinessanalyst, jobData.bussinessanalyst, jobData.bussinessanalystskill1, jobData.bussinessanalystskill2, jobData.bussinessanalystskill3, jobData.bussinessanalystskill4, jobData.bussinessanalystskill5, jobData.bussinessamount));
                     list.add(new homeData(jobData.accounttitle, R.drawable.senioraccountmanager, jobData.accountmanager, jobData.accountskill1, jobData.accountskill2, jobData.accountskill3, jobData.accountskill4, jobData.accountskill5, jobData.accountamount));
+                }
+                else if(title.equals(constructiontitle)){
+                    list.add(new homeData(jobData.pipingtitle,R.drawable.pipingwork,jobData.piping,jobData.pipingskill1,jobData.pipingskill2,jobData.pipingskill3,jobData.pipingskill4,jobData.pipingskill5,jobData.pipingamount));
+                    list.add(new homeData(jobData.roofertitle,R.drawable.roofwork,jobData.roofer,jobData.rooferskill1,jobData.rooferskill2,jobData.rooferskill3,jobData.rooferskill4,"",jobData.rooferamount));
+                    list.add(new homeData(jobData.electrictitle,R.drawable.electricwork,jobData.electric,jobData.electricskill1,jobData.electricskill2,jobData.electricskill3,jobData.electricskill4,jobData.electricskill5,jobData.electricamount));
+                    list.add(new homeData(jobData.civiltitle,R.drawable.civilengineering,jobData.civilengineering,jobData.civilskill1,jobData.civilskill2,jobData.civilskill3,jobData.civilskill4,jobData.civilskill5,jobData.civilamount));
+                    list.add(new homeData(jobData.plastetitle,R.drawable.plasterwork,jobData.plasterwork,jobData.plasterskill1,jobData.plasterskill2,jobData.plasterskill3,jobData.plasterskill4,"",jobData.plasteramount));
+                    list.add(new homeData(jobData.carpentrytitle,R.drawable.carpentry,jobData.carpentry,jobData.carpentryskill1,jobData.carpentryskill2,jobData.carpentryskill3,jobData.carpentryskill4,jobData.carpentryskill5,jobData.carpentryamount));
+                    list.add(new homeData(jobData.steeltitle,R.drawable.steelconstruction,jobData.steelconstruction,jobData.steelskill1,jobData.steelskill2,jobData.steelskill3,jobData.steelskill4,jobData.steelskill5,jobData.steelamount));
+                    list.add(new homeData(jobData.glasstitle,R.drawable.glasswork,jobData.glasswork,jobData.glasskill1,jobData.glasskill2,jobData.glasskill3,jobData.glasskill4,jobData.glasskill5,jobData.glassamount));
+                    list.add(new homeData(jobData.interiortitle,R.drawable.interiorfinishing,jobData.interirorfinishing,jobData.interiorskill1,jobData.interiorskill2,jobData.interiorskill3,jobData.interiorskill4,"",jobData.interioramount));
+                    list.add(new homeData(jobData.waterproofingtitle,R.drawable.waterproofing,jobData.waterproofing,jobData.waterproofingskill1,jobData.waterproofingskill2,jobData.waterproofingskill3,jobData.waterproofingskill4,"",jobData.waterproofingamount));
+                    list.add(new homeData(jobData.coatingtitle,R.drawable.coatingwork,jobData.coatingwork,jobData.coatingworkskill1,jobData.coatingworkskill2,jobData.coatingworkskill3,jobData.coatingworkskill4,jobData.coatingworkskill5,jobData.coatingworkamount));
+
+                }
+                else if(title.equals(computertitle)){
+                    list.add(new homeData(jobData.dataentrytitle,R.drawable.dataentry,jobData.dataentry,jobData.dataentryskill1,jobData.dataentryskill2,jobData.dataentryskill3,jobData.dataentryskill4,jobData.dataentryskill5,jobData.dataentryamount));
+                    list.add(new homeData(jobData.computerhardwaretitle,R.drawable.hardwareengineer,jobData.computerhardwareengineer,jobData.computerhardwareskill1,jobData.computerhardwareskill2,jobData.computerhardwareskill3,jobData.computerhardwareskill4,jobData.computerhardwareskill5,jobData.hardwareamount));
+                    list.add(new homeData(jobData.computeroperatortitle,R.drawable.computeroperator,jobData.computeroperator,jobData.computeroperatorskill1,jobData.computeroperatorskill2,jobData.computeroperatorskill3,jobData.computeroperatorskill4,jobData.computeroperatorskill5,jobData.computeroperatoramount));
+                    list.add(new homeData(jobData.transcriptiontitle,R.drawable.transcriptioneditor,jobData.transcriptioneditor,jobData.transcriptionskill1,jobData.transcriptionskill2,jobData.transcriptionskill3,jobData.transcriptionskill4,jobData.transcriptionskill5,jobData.transcriptionamount));
+                    list.add(new homeData(jobData.technicalsupporttitle,R.drawable.technicalsupport,jobData.technicalsupport,jobData.technicalsupportskill1,jobData.technicalsupportskill2,jobData.technicalsupportskill3,jobData.technicalsupportskill4,jobData.technicalsupportskill5,jobData.technicalsupportamount));
+                    list.add(new homeData(jobData.desktopsupporttitle,R.drawable.desktopsupport,jobData.desktopsupport,jobData.desktopsupportskill1,jobData.desktopsupportskill2,jobData.desktopsupportskill3,jobData.desktopsupportskill4,jobData.desktopsupportskill5,jobData.desktopsupportamount));
+
                 }
 
         adapter=new RecyclerAdapter(this,list);

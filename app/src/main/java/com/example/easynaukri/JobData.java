@@ -221,4 +221,168 @@ public class JobData {
    public String accountskill4="4.Organizational Skills";
    public String accountskill5="5.Written and Verbal Communication";
    public String accountamount="80,000/-";
+
+   public String piping="Piping Engineers are responsible for designing and building the piping systems that carry our water, gas, oil and waste. ... Piping Engineers first draw the blueprints for the system, and then they assist in selecting the materials that will be used to build the pipes and accompanying components.";
+   public String pipingtitle="PIPING WORK";
+   public String pipingskill1="1.Analytical Skills";
+   public String pipingskill2="2.Material Specifications";
+   public String pipingskill3="3.Stress Analysis";
+   public String pipingskill4="4.Refinery";
+   public String pipingskill5="5.CAD";
+   public String pipingamount="2000/- per hour";
+
+   public String roofer="A large part of a roofer's work will be repairing roofs, by removing and replacing broken tiles measuring, cutting and fitting roofing materials, and finishing off joints to make them watertight. Roofers also check to make sure that roofs are structurally sound.";
+   public String roofertitle="ROOFER WORK";
+   public String rooferskill1="1.Balance";
+   public String rooferskill2="2.Strength";
+   public String rooferskill3="3.Stamina";
+   public String rooferskill4="4.No Fear of Heights";
+   public String rooferamount="600/- per hour";
+
+   public String electric="Executing plans of electrical wiring for well functioning lighting, intercom and other electrical systems. Installing electrical apparatus, fixtures and equipment for alarm and other systems. Installing safety and distribution components.";
+   public String electrictitle="ELECTRIC WORK";
+   public String electricskill1="1.Good technical abilities";
+   public String electricskill2="2.Enthusiasm";
+   public String electricskill3="3.The ability to work well under pressure";
+   public String electricskill4="4.Innovation";
+   public String electricskill5="5.The motivation to work extra hours when necessary";
+   public String electricamount="13000/-";
+
+   public String civilengineering="Completes construction projects by preparing engineering design and documents and confirming specifications. Designs construction projects by studying project concept, architectural drawings, and models. ... Determines project costs by calculating labor, material, and related costs.";
+   public String civiltitle="CIVIL ENGINEERING";
+   public String civilskill1="1.Technical training.";
+   public String civilskill2="2.Mathematical skills";
+   public String civilskill3="3.Leadership skills";
+   public String civilskill4="4.Problem-solving";
+   public String civilskill5="5.Decision-making";
+   public String civilamount="23,000/-";
+
+   public String plasterwork="Plastering is a job which entails a great deal of dexterity and speed. It involves the coating of internal walls and ceilings with different types of plaster in order that they're ready to be decorated, and the coating of external surfaces with appropriate materials, such as cement or sand.";
+   public String plastetitle="PLASTER WORK";
+   public String plasterskill1="1.High range of mobility to apply plaster in all necessary areas";
+   public String plasterskill2="2.Excellent teamwork to achieve flawless results";
+   public String plasterskill3="3.Ability to meet tight deadlines";
+   public String plasterskill4="4.Familiarity erecting scaffolding and working with ornamental design tools";
+   public String plasteramount="22,000/-";
+
+   public String carpentry="Installs foundations, walls, floors, ceilings, and roofs using materials such as: wood, steel, metal, concrete, plastics, and composites of multiple materials. ... Assembles and fastens materials to make frameworks or props, using hand tools and wood screws, nails, dowel pins, or glue.";
+   public String carpentrytitle="CARPENTRY";
+   public String carpentryskill1="1.Math skills";
+   public String carpentryskill2="2.Physical strength";
+   public String carpentryskill3="3.Mechanical skills";
+   public String carpentryskill4="4.Problem-solving";
+   public String carpentryskill5="5.Attention to detail";
+   public String carpentryamount="18,000/-";
+
+   public String steelconstruction="HomeJob Description Samples & ExamplesProfessional Steel Worker Job Description Template\n" +
+           "Professional Steel Worker Job Description Template\n" +
+           "Steel workers work on large construction projects installing and reinforcing steel components that typically form the frameworks of tall buildings and bridges. This job can also involve demolishing, replacing or fixing steel components in older structures.\n" +
+           "\n" +
+           "Steel workers carry heavy loads, operate equipment and climb up and down tall structures in the course of their day. Being specific about the required strength and endurance in your steel worker job description will get you more applications from qualified candidates. A qualified steel worker should be proficient in reading blueprints and working with specialized tools.";
+   public String steeltitle="STEEL CONSTRCUTION";
+   public String steelskill1="1.Knowledge of applicable safety regulations";
+   public String steelskill2="2.Completed steel worker apprenticeship";
+   public String steelskill3="3.Able to read and understand blueprints";
+   public String steelskill4="4.Excellent work ethic";
+   public String steelskill5="5.Proficient in use of tools, including welding equipment, laser levels, jacks and metal shears";
+   public String steelamount="19,000/-";
+
+   public String glasswork="Glaziers are professional artisans who specialize in working with glass. They are mainly responsible for cutting, measuring, and installing glass or mirrors in window frames, skylights, display cases, showers, bathtubs, solariums, and other structures.";
+   public String glasstitle="GLASS WORK";
+   public String glasskill1="1.Heavy lifting";
+   public String glasskill2="2.Courageous";
+   public String glasskill3="3.Confident";
+   public String glasskill4="4.Willingness to work in potentially hazardous conditions";
+   public String glasskill5="5.patience";
+   public String glassamount="17,000/-";
+
+   public String interirorfinishing="Interior finishing using wood, plaster board, sound absorbing board, wallpaper, tatami mat, vinyl floor tiles, carpeting, or fusuma sliding doors"+"\n"+"Interior finishers build, install and repair interior wall panelling, trim and crown mouldings for single- and multi-family homes, and for commercial buildings. They are employed by construction companies, carpentry contractors and maintenance departments, or they may be self-employed.";
+   public String interiortitle="INTERIOR FINISHING";
+   public String interiorskill1="1.Developing work plans";
+   public String interiorskill2="2.Reading and interpreting blueprints";
+   public String interiorskill3="3.Cutting and shaping materials and joining them with nails, screws, bolts or glue";
+   public String interiorskill4="4.Selecting, measuring and marking materials for interior panelling, trim or mouldings.";
+   public String interioramount="21,000/-";
+
+   public String waterproofing="Install waterproofing treatment using equipment in accordance with established procedures and practices. Assist in waterproofing application and works with a range of waterproofing chemicals and coating products. Regularly monitor and maintain waterproofing equipment to ensure it remains in working order";
+   public String waterproofingtitle="WATER PROOFING";
+   public String waterproofingskill1="1.Window well installation";
+   public String waterproofingskill2="2.Interior perimeter drain system installation";
+   public String waterproofingskill3="3.Hand excavation and waterproofing";
+   public String waterproofingskill4="4.Polyurethane crack injection";
+   public String waterproofingamount="20,000/-";
+
+   public String coatingwork="Coating technicians apply paints, varnishes and other chemicals to individual parts, machines, automobiles and other products. They typically use power tools, such as spray guns, or operate automated painted systems.";
+   public String coatingtitle="COATING WORK";
+   public String coatingworkskill1="1.Ability to work safely";
+   public String coatingworkskill2="2.Excellent practical skills";
+   public String coatingworkskill3="3.Painting work require creative,innovative and newness skills";
+   public String coatingworkskill4="4.Ability to work as a part of team";
+   public String coatingworkskill5="5.Arm and Hand Strength";
+   public String coatingworkamount="25,000/-";
+
+   public String dataentry="Data Entry job description guide. A Data Entry role involves entering data from various sources into the company computer system for processing and management. A candidate working in data entry will need to efficiently manage a large amount of information that is often sensitive or confidential";
+   public String dataentrytitle="DATA ENTRY";
+   public String dataentryskill1="1.Proficient typing skills";
+   public String dataentryskill2="2.Administrative skills";
+   public String dataentryskill3="3.Good communication skills, both written and verbal";
+   public String dataentryskill4="4.Good customer service skills";
+   public String dataentryskill5="5.Basic literacy and numeracy skills";
+   public String dataentryamount="17,000/-";
+
+   public String computerhardwareengineer="Responsible for designing, developing, and testing computer hardware, including computer systems, circuit boards, computer chips, keyboards, routers, and printers. Supervises the manufacturing, production, and installation of the parts.";
+   public String computerhardwaretitle="COMPUTERHARDWARE ENGINEER";
+   public String computerhardwareskill1="1.Analytical skills";
+   public String computerhardwareskill2="2.Critical-thinking skills";
+   public String computerhardwareskill3="3.Communication skills";
+   public String computerhardwareskill4="4.Hardware knowledge";
+   public String computerhardwareskill5="5.Creativity";
+   public String hardwareamount="24,000/-";
+
+   public String computeroperator="Provides data by operating a computer. Determines sequence of operations by studying production schedule. Performs defined tasks per documented instructions/processes. Prepares equipment for operations by accessing software in computer";
+   public String computeroperatortitle="COMPUTER OPERATOR";
+   public String computeroperatorskill1="1.Reporting skills";
+   public String computeroperatorskill2="2.Productivity";
+   public String computeroperatorskill3="3.Documentation skills";
+   public String computeroperatorskill4="4.Equipment maintenance";
+   public String computeroperatorskill5="5.Data processing";
+   public String computeroperatoramount="20,000/-";
+
+   public String transcriptioneditor="The job of the editor is to correct and edit pre-translated transcriptions generated by our unique machine learning algorithm. Editors must create accurate written versions of audio or video recordings. This job involves listening to audio and reviewing drafts of written transcriptions. Editors will work remotely and on a freelance basis. A key part of this job is to spot any inaccuracies and errors, and to add in missing information within the final report. This job is well suited to people who are detail oriented, have excellent writing and listening skills, and can communicate well with colleagues, both verbally and over email.";
+   public String transcriptiontitle="TRANSCRIPTION EDITOR";
+   public String transcriptionskill1="1.Time management";
+   public String transcriptionskill2="2.Computer skills ";
+   public String transcriptionskill3="3.Detail oriented";
+   public String transcriptionskill4="4.Writing skills";
+   public String transcriptionskill5="5.Listening skills";
+   public String transcriptionamount="800/- per hour";
+
+   public String technicalsupport="We are looking for a Technical Support Engineer to provide enterprise-level assistance to our customers. You will diagnose and troubleshoot software and hardware problems and help our customers install applications and programs." +
+           "\n" +
+           "Technical Support Engineer responsibilities include resolving network issues, configuring operating systems and using remote desktop connections to provide immediate support. You will use email and chat applications to give clients quick answers to simple IT issues. For more complex problems that require nuanced instruction, you will contact clients via phone and/or provide clear, written instructions and technical manuals.";
+   public String technicalsupporttitle="TECHNICAL SUPPORT";
+   public String technicalsupportskill1="1.Customer Service";
+   public String technicalsupportskill2="2.Problem Solving";
+   public String technicalsupportskill3="3.Communication";
+   public String technicalsupportskill4="4.Flexibility";
+   public String technicalsupportskill5="5.Tech Skills";
+   public String technicalsupportamount="25,000/-";
+
+   public String desktopsupport="We are looking for a Desktop Support Engineer to to provide technical assistance to our clients. You will help install, upgrade and troubleshoot hardware and software systems.\n" +
+           "\n" +
+           "If you’re computer-savvy and enjoy supporting end users, we’d like to meet you. To succeed in this role, you should have a problem-solving attitude along with the ability to give clear technical instructions. You should also be familiar with remote troubleshooting techniques.\n" +
+           "\n" +
+           "Ultimately, you will ensure prompt and accurate customer service and increase client satisfaction.";
+   public String desktopsupporttitle="DESKTOP SUPPORT";
+   public String desktopsupportskill1="1.Hands-on experience with Windows/Linux/Mac OS environments";
+   public String desktopsupportskill2="2.Working knowledge of office automation products and computer peripherals, like printers and scanners";
+   public String desktopsupportskill3="3.Knowledge of network security practices and anti-virus programs";
+   public String desktopsupportskill4="4.Excellent problem-solving and multitasking skills";
+   public String desktopsupportskill5="5.Customer-oriented attitude";
+   public String desktopsupportamount="25,000/-";
+
+
+
+
+
 }

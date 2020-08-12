@@ -87,6 +87,8 @@ public class job extends Fragment {
         list.add(new HomeDataList("SOFTWARE FIELD",R.drawable.softwaredeveloper,"Click"));
         list.add(new HomeDataList("SALES AND MARKETING",R.drawable.salesandmarketing,"Click"));
         list.add(new HomeDataList("ACCOUNT AND FINANCE",R.drawable.accountsandfinance,"Click"));
+        list.add(new HomeDataList("CONSTRUCTION",R.drawable.construction,"Click"));
+        list.add(new HomeDataList("COMPUTER WORK",R.drawable.computerfield,"Click"));
         adapter=new RecyclerAdapterlist(getActivity(),list);
         recyclerView.setAdapter(adapter);
         super.onViewCreated(view, savedInstanceState);

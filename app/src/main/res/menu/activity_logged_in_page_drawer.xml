@@ -30,6 +30,10 @@
             android:icon="@drawable/aboutus_menu"
             android:title="About Us" />
         <item
+            android:id="@+id/nav_refer"
+            android:icon="@drawable/share_menu"
+            android:title="Refer and Earn" />
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/logout"
             android:title="Logout"

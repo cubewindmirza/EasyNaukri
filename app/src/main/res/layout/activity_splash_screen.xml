@@ -25,7 +25,7 @@
         android:text="EASY NAUKRI"
         android:textSize="45sp"
         android:id="@+id/splash_bottom"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:fontFamily="@font/aller"
         />
 
 

@@ -11,6 +11,8 @@ import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -61,6 +63,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -173,7 +176,7 @@ public class logged_in_page extends AppCompatActivity   {
 
        mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools,  R.id.nav_logout,R.id.nav_job,R.id.nav_aboutus)
+                R.id.nav_tools,  R.id.nav_logout,R.id.nav_job,R.id.nav_aboutus,R.id.nav_refer)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -241,7 +244,7 @@ public class logged_in_page extends AppCompatActivity   {
             }
         });
         if (ContextCompat.checkSelfPermission(logged_in_page.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "Permission Already Granted", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Permission Already Granted", Toast.LENGTH_SHORT).show();
         } else {
             requeststoragepersimmisons();
         }
@@ -429,11 +432,12 @@ public class logged_in_page extends AppCompatActivity   {
     private void checkInternet() {
         if(connection.connected(getApplicationContext())){
             internetdialog.cancel();
-            Toast.makeText(this,"Internet is Active",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Internet is Active",Toast.LENGTH_SHORT).show();
         }
         else
         {
             internetdialog.show();
+
         }
     }
     @Override
@@ -450,10 +454,35 @@ public class logged_in_page extends AppCompatActivity   {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("LOGOUT");
+           // builder.setTitle("LOGOUT");
             builder.setCancelable(false);
-            builder.setMessage("Do You Want To Logout");
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            //builder.setMessage("Do You Want To Logout");
+            final View customLayout = getLayoutInflater().inflate(R.layout.custom_alertdialog, null);
+            builder.setView(customLayout);
+            Button logoutyes=customLayout.findViewById(R.id.logout_yes);
+            Button logoutno=customLayout.findViewById(R.id.logout_no);
+            final AlertDialog dialog;
+            dialog = builder.create();
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+            logoutyes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(logged_in_page.this, MainActivity.class);
+                    firebaseAuth.signOut();
+                    sessionMangament.setsession(false);
+                    finishAffinity();
+                    finish();
+                    startActivity(i);
+                }
+            });
+            logoutno.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.cancel();
+                }
+            });
+            /*builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent i = new Intent(logged_in_page.this, MainActivity.class);
@@ -471,8 +500,9 @@ public class logged_in_page extends AppCompatActivity   {
                     dialog.cancel();
                 }
             });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+
+             */
+
         }
 
     }
@@ -800,7 +830,21 @@ public class logged_in_page extends AppCompatActivity   {
             Toast.makeText(logged_in_page.this, "Internet connection is not available. Please check and try again", Toast.LENGTH_SHORT).show();
         }
     }
-
+    private void showAlertDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        final View customLayout = getLayoutInflater().inflate(R.layout.custom_alertdialog, null);
+        alertDialog.setView(customLayout);
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // send data from the AlertDialog to the Activity
+                Toast.makeText(getApplicationContext(),"Awesome ",Toast.LENGTH_LONG).show();
+            }
+        });
+        AlertDialog alert = alertDialog.create();
+        alert.setCanceledOnTouchOutside(false);
+        alert.show();
+    }
 
 
 }

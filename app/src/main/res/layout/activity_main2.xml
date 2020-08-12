@@ -116,6 +116,22 @@
         android:layout_marginBottom="10dp"
         android:drawableLeft="@drawable/number"
         />
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:id="@+id/PromocodeSignup"
+           android:hint="Enter Promocode(optional)"
+           android:fontFamily="sans-serif-medium"
+           android:textColorHint="#000000"
+           android:background="@drawable/loginback"
+           android:layout_gravity="center"
+           android:drawablePadding="5dp"
+           android:layout_marginLeft="20dp"
+           android:layout_marginRight="20dp"
+           android:layout_marginTop="10dp"
+           android:layout_marginBottom="10dp"
+           android:drawableLeft="@drawable/number"
+           />
 
     <Button
         android:layout_width="wrap_content"
@@ -129,6 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Already Have an Account?"
+        android:fontFamily="@font/oswald"
         android:textColor="#ffffff"
         android:padding="10dp"
         android:textSize="20sp"/>
@@ -141,6 +158,8 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/forgotsignup"
         />
+
+
    </LinearLayout>
    </androidx.core.widget.NestedScrollView>
     </RelativeLayout>

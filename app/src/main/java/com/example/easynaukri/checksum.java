@@ -9,14 +9,18 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.easynaukri.ui.InternetConnection;
 import com.example.easynaukri.ui.slideshow.SlideshowFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.paytm.pgsdk.PaytmOrder;
 import com.paytm.pgsdk.PaytmPGService;
 import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
@@ -42,18 +46,23 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
     // InternetConnection connection=new InternetConnection();
     String custid="", orderId="", mid="";
     String status="Pending";
+    int amount;
+    String jobtitle,salary;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
         //initOrderId();
         //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
+       // checkBonusData();
         Intent intent = getIntent();
         orderId = intent.getExtras().getString("orderid");
         custid = intent.getExtras().getString("custid");
-
-        mid = "WXXCMA51547144336444"; /// your marchant key
+        amount=intent.getExtras().getInt("amount");
+        jobtitle=intent.getExtras().getString("jobtitle");
+        salary=intent.getExtras().getString("salary");
+        mid = "WXXCMA51547144336444";/// your marchant key
+        //checkBonusData();
         sendUserDetailTOServerdd dl = new sendUserDetailTOServerdd();
         dl.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 // vollye , retrofit, asynch
@@ -82,7 +91,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
                     "MID="+mid+
                     "&ORDER_ID=" + orderId+
                     "&CUST_ID="+custid+
-                    "&CHANNEL_ID=WAP&TXN_AMOUNT=299&WEBSITE=WEBSTAGING"+
+                    "&CHANNEL_ID=WAP&TXN_AMOUNT="+amount+"&WEBSITE=WEBSTAGING"+
                             "&CALLBACK_URL="+ varifyurl+"&INDUSTRY_TYPE_ID=Retail";
 
             JSONObject jsonObject = jsonParser.makeHttpRequest(url,"POST",param);
@@ -121,7 +130,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
             paramMap.put("ORDER_ID", orderId);
             paramMap.put("CUST_ID", custid);
             paramMap.put("CHANNEL_ID", "WAP");
-            paramMap.put("TXN_AMOUNT", "299");
+            paramMap.put("TXN_AMOUNT", String.valueOf(amount));
             paramMap.put("WEBSITE", "WEBSTAGING");
             paramMap.put("CALLBACK_URL" ,varifyurl);
             //paramMap.put( "EMAIL" , "abc@gmail.com");   // no need
@@ -165,14 +174,21 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
                 String paymentmethod="Paytm";
                 String cancel="";
                 status="Success";
-                PaymentDetails details=new PaymentDetails("299",orderId,strDate,strTime,paymentmethod,cancel,payment,status);
+                PaymentDetails details=new PaymentDetails(amount,orderId,strDate,strTime,paymentmethod,cancel,payment,status);
                 myRef.setValue(details);
                 Toast.makeText(this,"Success",Toast.LENGTH_LONG).show();
-                DatabaseReference databaseReference=database.getReference().child("TotalPayment").child(useruid);
                 Random r=new Random();
                 int generated=r.nextInt(1000);
+                DatabaseReference updateapply=database.getReference().child(useruid).child("AppiledFor").child(jobtitle);
+                HashMap<String,String> apply=new HashMap<>();
+                apply.put("Salary",salary);
+                apply.put("Status","Success");
+                apply.put("DateTime",strDate+strTime);
+                updateapply.setValue(apply);
+                DatabaseReference databaseReference=database.getReference().child("TotalPayment").child(useruid).child(generated+strDate+strTime);
                 HashMap<String,String> res=new HashMap<>();
-                res.put(generated+strDate+strTime,"Paid");
+                res.put("Status","Success");
+                res.put("Amount",String.valueOf(amount));
                 databaseReference.setValue(res);
                 finish();
             } else if (!bundle.getBoolean("STATUS")) {
@@ -185,7 +201,13 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
                 String payment="Failed";
                 String paymentmethod="All In One Pay";
                 String cancel="Yes";
-                PaymentDetails details=new PaymentDetails("299",orderId,strDate,strTime,paymentmethod,cancel,payment,status);
+                DatabaseReference updateapply=database.getReference().child(useruid).child("AppiledFor").child(jobtitle);
+                HashMap<String,String> apply=new HashMap<>();
+                apply.put("Salary",salary);
+                apply.put("Status","Pending");
+                apply.put("DateTime",strDate+strTime);
+                updateapply.setValue(apply);
+                PaymentDetails details=new PaymentDetails(amount,orderId,strDate,strTime,paymentmethod,cancel,payment,status);
                 myRef.setValue(details);
                 Toast.makeText(this,"Failed",Toast.LENGTH_LONG).show();
                 finish();
@@ -230,7 +252,13 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         String payment="failed";
         String paymentmethod="All In One Pay";
         String cancel="Canceled By User";
-        PaymentDetails details=new PaymentDetails("299",orderId,strDate,strTime,paymentmethod,cancel,payment,status);
+        DatabaseReference updateapply=database.getReference().child(useruid).child("AppiledFor").child(jobtitle);
+        HashMap<String,String> apply=new HashMap<>();
+        apply.put("Salary",salary);
+        apply.put("Status","Pending");
+        apply.put("DateTime",strDate+strTime);
+        updateapply.setValue(apply);
+        PaymentDetails details=new PaymentDetails(amount,orderId,strDate,strTime,paymentmethod,cancel,payment,status);
         myRef.setValue(details);
         finish();
         Toast.makeText(this,"Transcation Canceled",Toast.LENGTH_LONG).show();
@@ -252,11 +280,38 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         String payment="failed";
         String paymentmethod="All In One Pay";
         String cancel="Canceled By User";
-        PaymentDetails details=new PaymentDetails("299",orderId,strDate,strTime,paymentmethod,cancel,payment,status);
+        DatabaseReference updateapply=database.getReference().child(useruid).child("AppiledFor").child(jobtitle);
+        HashMap<String,String> apply=new HashMap<>();
+        apply.put("Salary",salary);
+        apply.put("Status","Pending");
+        apply.put("DateTime",strDate+strTime);
+        updateapply.setValue(apply);
+        PaymentDetails details=new PaymentDetails(amount,orderId,strDate,strTime,paymentmethod,cancel,payment,status);
         myRef.setValue(details);
         finish();
         Toast.makeText(this,"Transcation Canceled",Toast.LENGTH_LONG).show();
     }
 
+    public void checkBonusData(){
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String useruid = firebaseUser.getUid();
+        DatabaseReference myRef = database.getReference().child(useruid).child("ReferEarn");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Object bonus=snapshot.child("WalletBalance").getValue();
+                if(bonus.toString().equals("50")){
+                    amount=249;
+                }
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 }

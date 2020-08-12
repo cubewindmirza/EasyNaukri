@@ -27,4 +27,13 @@
     <string name="close_drawer">close</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="promocode_descp"> You Will be Provided With A Unique PromoCode. Refer your PromoCode to Your Friends while
+             Signing up. Onces Your Friends Sign up with Your PromoCode You Get Rewareded 50 Rupees in Refer Wallet Section. To Redeem the Money From Refer Wallet to Actual Wallet
+             Your friend need to Apply For Job.
+    </string>
+    <string name="promocode_wallet">1.Refer Wallet :This Wallet tells about how many members you have refered.It is not the rewarded money\n\n
+         2.Actual Wallet :This Wallet is the real money that get added whenever refered person applies for a job.
+    </string>
+
 </resources>

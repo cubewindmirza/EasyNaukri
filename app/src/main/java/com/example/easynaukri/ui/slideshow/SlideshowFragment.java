@@ -25,6 +25,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.easynaukri.PaymentDetails;
 import com.example.easynaukri.R;
+import com.example.easynaukri.ReferEarnData;
 import com.example.easynaukri.UserProfileData;
 import com.example.easynaukri.checksum;
 import com.example.easynaukri.logged_in_page;
@@ -56,7 +57,7 @@ public class SlideshowFragment extends Fragment {
     String PAYTM_PACKAGE_NAME = "net.one97.paytm";
     String PHONE_PAY_PACKAGE_NAME = "com.phonepe.app";
     String upiid="paytm-26378481@paytm";
-    String amount="299";
+    int amount=299;
     String transid="100";
     String paymentmethod="";
     String statuspa="pending";
@@ -72,12 +73,6 @@ public class SlideshowFragment extends Fragment {
                 ViewModelProviders.of(this).get(SlideshowViewModel.class);
         View root = inflater.inflate(R.layout.fragment_aboutus, container, false);
         //final TextView textView = root.findViewById(R.id.textview);
-        slideshowViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                //textView.setText(s);
-            }
-        });
         return root;
     }
 
@@ -93,7 +88,8 @@ public class SlideshowFragment extends Fragment {
         tv_Time=view.findViewById(R.id.paymenttime);
         tv_Method=view.findViewById(R.id.paymentmethod);
         tv_PaymentStatus=view.findViewById(R.id.paymentstatus);
-        checkPaymentDone();
+        //checkPaymentDone();
+        checkBonusData();
         //ed_UpiId=view.findViewById(R.id.upiid);
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS}, 101);
@@ -171,7 +167,7 @@ public class SlideshowFragment extends Fragment {
                         .appendQueryParameter("mc", "")
                         .appendQueryParameter("tr", transid)
                         .appendQueryParameter("tn", "your-transaction-note")
-                        .appendQueryParameter("am", amount)
+                        .appendQueryParameter("am", String.valueOf(amount))
                         .appendQueryParameter("cu", "INR")
                         .appendQueryParameter("url", "your-transaction-url")
                         .build();
@@ -284,6 +280,7 @@ public class SlideshowFragment extends Fragment {
                 result.put("PaymentMethod",paymentmethod);
 
                  */
+
                 PaymentDetails details=new PaymentDetails(amount,transid,strDate,strTime,paymentmethod,cancel,payment,statuspa);
                 myRef.setValue(details);
                 Toast.makeText(getActivity(), "Payment cancelled by user.", Toast.LENGTH_SHORT).show();
@@ -336,13 +333,13 @@ public class SlideshowFragment extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                    PaymentDetails details=dataSnapshot.getValue(PaymentDetails.class);
-                   String amount=details.Amount;
+                   Object amountofpayment=details.Amount;
                    String transid=details.TransactionId;
                    String date=details.Date;
                    String time=details.Time;
                    String paymentmethod=details.PaymentMethod;
                    String status=details.Status;
-                   tv_Amount.setText(amount);
+                   tv_Amount.setText(amountofpayment.toString());
                    tv_Transid.setText(transid);
                    tv_Date.setText(date);
                    tv_Time.setText(time);
@@ -368,6 +365,7 @@ public class SlideshowFragment extends Fragment {
 
             }
         });
+        
 
     }
     public void payUsingPaytm(){
@@ -384,6 +382,9 @@ public class SlideshowFragment extends Fragment {
         Intent intent = new Intent(getContext(), checksum.class);
         intent.putExtra("orderid",OrderId );
         intent.putExtra("custid", CustId);
+        intent.putExtra("amount",amount);
+        intent.putExtra("jobtitle","Nothing");
+        intent.putExtra("salary","Nothing");
         startActivity(intent);
     }
     public void checkPaymentDone(){
@@ -409,6 +410,40 @@ public class SlideshowFragment extends Fragment {
                       paytm.setEnabled(true);
                   }
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    public void checkBonusData(){
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String useruid = firebaseUser.getUid();
+        DatabaseReference myRef = database.getReference().child(useruid).child("ReferEarn");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+               Object bonus=snapshot.child("ActualWallet").getValue();
+               if(bonus.toString().equals("50")){
+                   amount=249;
+               }
+               else if(bonus.toString().equals("100")){
+                   amount=199;
+               }
+               else if(bonus.toString().equals("150")){
+                   amount=149;
+               }
+               else if(bonus.toString().equals("0")){
+                   amount=299;
+               }
+               else{
+                   amount=149;
+               }
+
             }
 
             @Override

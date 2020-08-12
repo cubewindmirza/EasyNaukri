@@ -3,7 +3,7 @@ package com.example.easynaukri;
 import java.util.stream.Stream;
 
 public class PaymentDetails {
-    public String Amount;
+    public int Amount;
     public String TransactionId;
     public String Date;
     public String Time;
@@ -12,7 +12,7 @@ public class PaymentDetails {
     public String Payment;
     public String Status;
 
-    public PaymentDetails(String amount, String transactionId, String date, String time, String paymentMethod,String cancel,String payment,String status) {
+    public PaymentDetails(int amount, String transactionId, String date, String time, String paymentMethod,String cancel,String payment,String status) {
         Amount = amount;
         TransactionId = transactionId;
         Date = date;

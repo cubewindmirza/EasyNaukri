@@ -113,12 +113,7 @@ public class GalleryFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_completeprofile, container, false);
 
        // Toast.makeText("this",editText.getText().toString(),Toast.LENGTH_LONG).show();
-        galleryViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
 
-            }
-        });
         return root;
     }
 
@@ -219,7 +214,7 @@ public class GalleryFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PaymentDetails details=dataSnapshot.getValue(PaymentDetails.class);
-                String payment=details.Payment;
+                String payment=details.Status;
                 tv_PaymentData.setText(payment);
             }
 
@@ -228,6 +223,8 @@ public class GalleryFragment extends Fragment {
 
             }
         });
+
+
     }
     public void checkprofilephoto(){
         FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
